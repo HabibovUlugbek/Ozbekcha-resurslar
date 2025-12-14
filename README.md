@@ -99,9 +99,7 @@ Bu repository Oʻzbek tilida yozilgan:
 - [never, void ,any va unknown tiplarining farqi nimada ? (intervyu savoli )](https://habibovulugbek.medium.com/never-void-any-va-unknown-tiplarining-farqi-nimada-intervyu-savoli-e551abb38791)
 - [Interface & Type](https://habibovulugbek.medium.com/interface-type-3e44009a5d11)
 
-## Qo'shimcha mavzular
-
-## 📌 Other Useful Articles
+## 📌 Qo'shimcha foydali mavzular
 
 - [S.O.L.I.D](https://habibovulugbek.medium.com/s-o-l-i-d-421a1a2bf11)
 - [Array & Linked list](https://habibovulugbek.medium.com/array-linked-list-f5f709d96797)
@@ -114,6 +112,8 @@ PR ochishingiz mumkin:
 - xatolarni tuzatish
 - yangi implementatsiyalar
 - testlar
+
+Ko'proq ma'lumot olish uchun [CONTRIBUTING.md](CONTRIBUTING.md) faylini o'qing.
 
 ---
 
