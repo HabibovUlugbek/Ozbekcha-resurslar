@@ -1,62 +1,122 @@
-# Node.js Modules Reimplementation
+# O'zbek tilida dasturlash resurslari
 
-This repository aims to provide reimplementation of popular Node.js modules, showcasing how they can be used with real examples. In this repo, I will cover the reimplementation of modules: `event` and `fs` and also you can see usage of `buffer` and `streams`.
+Ushbu repository O'zbek tilida dasturlash bo'yicha turli resurslarni jamlash uchun mo'ljallangan. Bu yerda siz dasturlash tillari, kutubxonalar, frameworklar va boshqa texnologiyalar haqida ma'lumotlar topishingiz mumkin.
 
-## Event Module Reimplementation
+## Mavzular
 
-The `event` module is a core module in Node.js that allows you to create and handle custom events. In this reimplementation, I have created a simplified version of the `event` module.
+Bu repository Oʻzbek tilida yozilgan:
 
-Feel free to explore the reimplementation and customize it according to your needs.
+- Backend
+- Node.js
+- Database internals
+- System design
+- Distributed systems
+- Networking
+- OS
 
-For more information on the `event` module reimplementation, please refer to the [README](./events-module/README.md) in the `events-module` folder.
+📚 Maqolalar + 🧪 real implementatsiyalar + 📊 benchmarklar
 
-## FS Module Usage: File Commander
+## Resurslar
 
-The `fs` module is a core module in Node.js that provides an API for interacting with the file system. In this repository, I have implemented a file commander application that demonstrates various use cases of the `fs` module.
+### ⚙️ System Design
 
-The file commander allows you to perform operations such as creating, reading, updating, and deleting files and directories. It also provides functionality for renaming files.
+- [System design tushunchalari real hayot bilan solishtirganda](https://habibovulugbek.medium.com/system-design-tushunchalari-real-hayot-bilan-solishtirganda-01d26fbc46d2)
+- [Distributed system nima?](https://habibovulugbek.medium.com/distributed-system-nima-a0a1be8878c6)
+- [Scalability](https://habibovulugbek.medium.com/scalability-654f54fd2863)
+- [CAP theorem](https://habibovulugbek.medium.com/cap-theorem-a38f9e370557)
+- [Backend for Frontend (BFF)](https://habibovulugbek.medium.com/backend-for-frontend-bff-9b31efed644d)
+- [Circuit Breaker](https://habibovulugbek.medium.com/circuit-breaker-167b0d1d127d)
+- [Strong vs Eventual consistency](https://habibovulugbek.medium.com/strong-vs-eventual-consistency-d7d1855453ab)
+- [Consistent hashing](https://habibovulugbek.medium.com/consistent-hashing-dddfb60a9d20)
+- [Consistent hashing 0 dan yozamiz (benchmark bilan)](https://habibovulugbek.medium.com/consistent-hashing-0-dan-yozamiz-benchmark-bilan-91130446cbeb)
+- [Note app bilan Sharding qilamiz.](https://habibovulugbek.medium.com/note-app-bilan-sharding-qilamiz-6aafd0a1d72c)
+- [Bloom filters](https://habibovulugbek.medium.com/bloom-filters-f6e9e72dbe5c)
+- [Bloom filters amalda: Noldan kod yozib, benchmark qilamiz](https://habibovulugbek.medium.com/bloom-filters-amalda-noldan-kod-yozib-benchmark-qilamiz-5d08bf786cc7)
+- [Rate limiting nima ?](https://habibovulugbek.medium.com/rate-limiting-nima-46677adf49ad)
 
-Feel free to explore the file commander and customize it according to your needs.
+## 🗄️ Databaza bilimlari
 
-For more information on the file commander and its usage with the `fs` module, please refer to the [README](./file-commander/README.md) in the `file-commander` folder.
+- [Database Normalization nima ? (1-qism)](https://habibovulugbek.medium.com/database-normalization-nima-566fca45b497)
+- [Database Normalization formalari.( 2- qism)](https://habibovulugbek.medium.com/database-normalization-formalari-2-qism-7d09c711006d)
+- [Database Denormalization nimaga kerak ? (3-qism)](https://habibovulugbek.medium.com/database-denormalization-nimaga-kerak-3-qism-c1fe100a75a3)
+- [Databasedagi hamma keylarni bilasizmi ?](https://habibovulugbek.medium.com/databasedagi-hamma-keylarni-bilasizmi-6071494bde80)
+- [Connection pooling(benchmark bilan)](https://habibovulugbek.medium.com/connection-pooling-benchmark-bilan-30246ba17d70)
+- [Tranzaksiya nima ? (Siz bilmagan malumotlar)](https://habibovulugbek.medium.com/tranzaksiya-nima-siz-bilmagan-malumotlar-701d04470b0e)
+- [ACID 1-qism (Atomicity)](https://habibovulugbek.medium.com/acid-1-qism-atomicity-6757b1126700)
+- [ACID 2-qism (Isolation, Isolation levels)](https://habibovulugbek.medium.com/acid-2-qism-isolation-isolation-levels-8a7581cec853)
+- [ACID 3-qism (Consistency)](https://habibovulugbek.medium.com/acid-3-qism-consistency-e96a2fc97322)
+- [ACID 4-qism (Durability)](https://habibovulugbek.medium.com/acid-4-qism-durability-afb601bca795)
+- [ACID misollarda 5-qism](https://habibovulugbek.medium.com/acid-misollarda-5-qism-75db386bba46)
+- [Databazada concurrency control (locks)](https://habibovulugbek.medium.com/databazada-concurrency-control-locks-09703e90cc15)
+- [Phantom read,Serializable va Repeatable isolation level farqlari](https://habibovulugbek.medium.com/phandom-read-serializable-va-repeatable-isolation-level-farqlari-2f2c43a27bfa)
+- [B-Tree bizga qanday yordam beradi](https://habibovulugbek.medium.com/b-tree-bizga-qanday-yordam-beradi-93f6220f4a03)
+- [Databazadagi indexlar haqida to`liq malumot.](https://habibovulugbek.medium.com/databazadagi-indexlar-haqida-to-liq-malumot-642ce7faa408)
+- [Row va columnga asoslangan databazalar](https://habibovulugbek.medium.com/row-va-columnga-asoslangan-databazalar-9bda3035e5d7)
+- [Databaza malumotlarni qanday saqlaydi ?](https://habibovulugbek.medium.com/databaza-malumotlarni-qanday-saqlaydi-de0cfc03b483)
+- [Database sharding](https://habibovulugbek.medium.com/database-sharding-791e01d38a90)
+- [Database Partitioning (demo bilan)](https://habibovulugbek.medium.com/database-partitioning-demo-bilan-31897de181cc)
+- [Database Replication](https://habibovulugbek.medium.com/database-replication-636c19042fb7)
 
-## Streams in Node.js
+## 🌐 Tarmoq(Networking) bilimlari
 
-Streams are a powerful feature in Node.js that allow you to efficiently process and manipulate data. They provide a way to read or write data in chunks, rather than loading the entire data into memory.
+- [Internet qanday ishlaydi yoki malumot almashish qanchalik o`zgardi ?](https://habibovulugbek.medium.com/internet-qanday-ishlaydi-yoki-malumot-almashish-qanchalik-o-zgardi-ae79e5dddc13)
+- [Network yoki OSI model qismlari .](https://habibovulugbek.medium.com/network-yoki-osi-model-qismlari-ced6473418f9)
+- [TCP handshake](https://habibovulugbek.medium.com/tcp-handshake-dee5418cef95)
+- [TCP slow start](https://habibovulugbek.medium.com/tcp-slow-start-6e6e88d3899b)
+- [TCP fast open (handshakeni chetlab o`tish)](https://habibovulugbek.medium.com/tcp-fast-open-handshakeni-chetlab-o-tish-001d52528793)
+- [TCP va UDP](https://habibovulugbek.medium.com/tcp-va-udp-8ee56341c713)
+- [HTTP (HTTP versiyalari)](https://habibovulugbek.medium.com/http-http-versiyalari-afb9fe438585)
+- [Biz qaysi IP addressni ishlatamiz ? (NAT)](https://habibovulugbek.medium.com/biz-qaysi-ip-addressni-ishlatamiz-nat-6fc3fae3a32a)
+- [SYN Flood hujumi haqida bilasizmi ?](https://habibovulugbek.medium.com/syn-flood-hujumi-haqida-bilasizmi-d97052879766)
 
-In this repository, I also cover the usage of streams. You can find examples and explanations on how to work with streams in the [README](./streams/README.md) in the `streams` folder. I provide examples of working with streams, including benchmarking and a custom stream implementation.
+## 🖥️ Operatsion Sistema
 
-Feel free to explore the examples and learn how to leverage streams in your Node.js projects.
+- [Unix qanday ishlaydi ?](https://habibovulugbek.medium.com/unix-qanday-ishlaydi-36bf80a69fef)
+- [Terminal haqida boshlang`ich bilimlar ?](https://habibovulugbek.medium.com/terminal-haqida-boshlang-ich-bilimlar-d0e865478724)
+- [Processlar orasidagi kommunikatsiya(IPC)](https://habibovulugbek.medium.com/processlar-orasidagi-kommunikatsiya-ipc-6e1d95acba16)
+- [Processlar va thread nima farqi bor ?](https://habibovulugbek.medium.com/process-va-thread-nima-farqi-bor-78201ce6a72f)
 
-## Network with Node.js
+## Node.js
 
-In addition to the reimplementation of core modules, I also cover networking with Node.js. You can find examples and explanations on how to create a simple TCP server and client in the [README](./network/README.md) in the `network` folder.
+- [Nodejs nimalardan iborat va qanday qurilgan ?](https://habibovulugbek.medium.com/nodejs-nimalardan-iborat-va-qanday-qurilgan-7dbc6f1a041a)
+- [Stream nima? Nodejs ortida streamlar qanday ishlaydi ?](https://habibovulugbek.medium.com/stream-nima-nodejsda-ortida-streamlar-qanday-ishlaydi-77256825ec51)
+- [Custom streamlar yozamiz (Nodejs).](https://habibovulugbek.medium.com/custom-streamlar-yozamiz-nodejs-65eaf08185e7)
+- [Streamni benchmark qilamiz (nodejs).](https://habibovulugbek.medium.com/streamni-benchmark-qilamiz-nodejs-4aa153c614f2)
+- [Stream orqali chat app quramiz.](https://habibovulugbek.medium.com/stream-orqali-chat-app-quramiz-2766cd7a1135)
+- [Buffer haqida bilib olamiz (Nodejs).](https://habibovulugbek.medium.com/buffer-haqida-bilib-olamiz-nodejs-9e8193c387da)
+- [Nodejs single threadmi yoki multi thread ?](https://habibovulugbek.medium.com/nodejs-single-threadmi-yoki-multi-thread-062e129159b7)
+- [Nodejsda Worker threads(Concurrency va Parallelism)](https://habibovulugbek.medium.com/nodejsda-worker-threads-concurrency-va-parallelism-6ff1c383e381)
+- [Nodejsda Clustering](https://habibovulugbek.medium.com/nodejsda-clustering-c11125c6057e)
+- [Nodejsda Child process](https://habibovulugbek.medium.com/nodejsda-child-process-aa8312dcc228)
+- [Thread pool nima  ?](https://habibovulugbek.medium.com/thread-pool-nima-3bf306583840)
 
-Feel free to explore the examples and learn how to build networking applications with Node.js.
+## JavaScript & TypeScript
 
-## Social Media and Articles
+- [JavaScriptda xotira managmenti va garbage collector.](https://habibovulugbek.medium.com/javascriptda-xotira-managmenti-va-garbage-collector-90fe2aaebd0a)
+- [Javascript Error handling (Xatolar bilan ishlash)](https://habibovulugbek.medium.com/javascript-error-handling-xatolar-bilan-ishlash-bd52f877f7ad)
+- [Javascriptdagi IIFE haqida nimalarni bilamiz ?](https://habibovulugbek.medium.com/javascriptdagi-iife-haqida-nimalarni-bilamiz-9023bd3d01ae)
+- [Javascriptda (Nodejs) modullar haqida tanishamiz.](https://habibovulugbek.medium.com/javascriptda-nodejs-modullar-haqida-tanishamiz-a942396d918d)
+- [never, void ,any va unknown tiplarining farqi nimada ? (intervyu savoli )](https://habibovulugbek.medium.com/never-void-any-va-unknown-tiplarining-farqi-nimada-intervyu-savoli-e551abb38791)
+- [Interface & Type](https://habibovulugbek.medium.com/interface-type-3e44009a5d11)
 
-If you're interested in learning more about the reimplementation of the `event` and `fs` modules, as well as the usage of `buffer` and `streams`, here are some resources you can explore:
+## Qo'shimcha mavzular
 
-- Follow me on [LinkedIn](https://www.linkedin.com/in/ulugbekhabibov) for updates and news about the project.
+## 📌 Other Useful Articles
 
-- Follow me on [Telegram](https://t.me/+pBD38RkcBI5hZThi) for more insights and discussions on Node.js and engineering topics.
+- [S.O.L.I.D](https://habibovulugbek.medium.com/s-o-l-i-d-421a1a2bf11)
+- [Array & Linked list](https://habibovulugbek.medium.com/array-linked-list-f5f709d96797)
+- [Compilerlar dastur kodini qanday ishlatadi ?](https://habibovulugbek.medium.com/compilerlar-dastur-kodini-qanday-ishlatadi-adf8365df6fb)
 
-- Check out my articles on [Medium](https://medium.com/@habibovulugbek) (in Uzbek language) for an in-depth analysis of the reimplementation process.
+## 🤝 Hissa qoʻshish
 
-Article links:
+PR ochishingiz mumkin:
 
-- About the buffer. [Buffer haqida bilib olamiz (Nodejs)](https://medium.com/@habibovulugbek/buffer-haqida-bilib-olamiz-nodejs-9e8193c387da)
-- About the streams. [Stream nima? Nodejsda streamlar bilan ishlash.](https://medium.com/@habibovulugbek/stream-nima-nodejsda-ortida-streamlar-qanday-ishlaydi-77256825ec51)
-- Stream benchmarking. [Streamlar bilan benchmarking qilish.](https://medium.com/@habibovulugbek/streamni-benchmark-qilamiz-nodejs-4aa153c614f2)
-- Custom stream implementation. [Custom streamlar yozamiz(Nodejs).](https://habibovulugbek.medium.com/custom-streamlar-yozamiz-nodejs-65eaf08185e7)
+- xatolarni tuzatish
+- yangi implementatsiyalar
+- testlar
 
-I will be sharing more insights and updates on the reimplementation of Node.js modules, so stay tuned for more content.
+---
 
-If you have any questions or feedback, feel free to reach out to me on LinkedIn or Medium.
-
-I hope you find these resources helpful in understanding and exploring the reimplementation of these modules. Happy coding!
-
-Developed by ❤️ by Ulug'bek Habibov
-
-Don't forget to ⭐ this repository if you find it helpful!
+<p align="center">
+ <i>Agar repo foydali bo‘lsa ⭐ star bering — bu loyiha rivojlanishiga katta yordam beradi .</i>
+</p>
