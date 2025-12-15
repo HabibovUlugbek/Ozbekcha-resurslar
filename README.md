@@ -33,6 +33,7 @@ Bu repository Oʻzbek tilida yozilgan:
 - [Bloom filters](https://habibovulugbek.medium.com/bloom-filters-f6e9e72dbe5c)
 - [Bloom filters amalda: Noldan kod yozib, benchmark qilamiz](https://habibovulugbek.medium.com/bloom-filters-amalda-noldan-kod-yozib-benchmark-qilamiz-5d08bf786cc7)
 - [Rate limiting nima ?](https://habibovulugbek.medium.com/rate-limiting-nima-46677adf49ad)
+- [Single point of failure(SPOF)](https://medium.com/@habibovulugbek/single-point-of-failure-spof-291485d18ba0)
 
 ## 🗄️ Databaza bilimlari
 
