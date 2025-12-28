@@ -34,6 +34,7 @@ Bu repository Oʻzbek tilida yozilgan:
 - [Bloom filters amalda: Noldan kod yozib, benchmark qilamiz](https://habibovulugbek.medium.com/bloom-filters-amalda-noldan-kod-yozib-benchmark-qilamiz-5d08bf786cc7)
 - [Rate limiting nima ?](https://habibovulugbek.medium.com/rate-limiting-nima-46677adf49ad)
 - [Single point of failure(SPOF)](https://medium.com/@habibovulugbek/single-point-of-failure-spof-291485d18ba0)
+- [Fail-over va fault tolorence](https://medium.com/@habibovulugbek/fail-over-va-fault-tolorence-018ce8bbf162)
 
 ## 🗄️ Databaza bilimlari
 
@@ -89,7 +90,7 @@ Bu repository Oʻzbek tilida yozilgan:
 - [Nodejsda Worker threads(Concurrency va Parallelism)](https://habibovulugbek.medium.com/nodejsda-worker-threads-concurrency-va-parallelism-6ff1c383e381)
 - [Nodejsda Clustering](https://habibovulugbek.medium.com/nodejsda-clustering-c11125c6057e)
 - [Nodejsda Child process](https://habibovulugbek.medium.com/nodejsda-child-process-aa8312dcc228)
-- [Thread pool nima  ?](https://habibovulugbek.medium.com/thread-pool-nima-3bf306583840)
+- [Thread pool nima ?](https://habibovulugbek.medium.com/thread-pool-nima-3bf306583840)
 
 ## JavaScript & TypeScript
 
