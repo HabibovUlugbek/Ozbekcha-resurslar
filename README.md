@@ -91,6 +91,7 @@ Bu repository Oʻzbek tilida yozilgan:
 - [Nodejsda Clustering](https://habibovulugbek.medium.com/nodejsda-clustering-c11125c6057e)
 - [Nodejsda Child process](https://habibovulugbek.medium.com/nodejsda-child-process-aa8312dcc228)
 - [Thread pool nima ?](https://habibovulugbek.medium.com/thread-pool-nima-3bf306583840)
+- [Nodejsda 0 dan threadpool yozamiz(worker threads)](https://medium.com/@habibovulugbek/nodejsda-0-dan-threadpool-yozamiz-worker-threads-861df2731121)
 
 ## JavaScript & TypeScript
 
