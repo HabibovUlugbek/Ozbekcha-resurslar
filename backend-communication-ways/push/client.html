@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>WebSocket Push</title>
+  </head>
+  <body>
+    <h3>Incoming PUSH data:</h3>
+    <ul id="messages"></ul>
+
+    <script>
+      const ws = new WebSocket("ws://localhost:8080");
+      const list = document.getElementById("messages");
+
+      ws.onmessage = (event) => {
+        const data = JSON.parse(event.data);
+
+        const li = document.createElement("li");
+        li.textContent = `${data.message} — ${data.time}`;
+        list.appendChild(li);
+      };
+
+      ws.onopen = () => {
+        console.log("Connected to server");
+      };
+
+      ws.onclose = () => {
+        console.log("Disconnected");
+      };
+    </script>
+  </body>
+</html>
