@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <button id="start">Start Job</button>
+    <div id="jobs"></div>
+
+    <script>
+      const jobsContainer = document.getElementById("jobs");
+      const jobs = new Map();
+
+      document.getElementById("start").onclick = async () => {
+        const res = await fetch("http://localhost:3000/jobs", {
+          method: "POST",
+        });
+        const { jobId } = await res.json();
+
+        createJobUI(jobId);
+        startPolling(jobId);
+      };
+
+      function createJobUI(jobId) {
+        const wrapper = document.createElement("div");
+        wrapper.id = jobId;
+
+        wrapper.innerHTML = `
+          <p><strong>Job:</strong> ${jobId}</p>
+          <p class="status">pending (0%)</p>
+          <progress max="100" value="0"></progress>
+          <hr />
+        `;
+
+        jobsContainer.appendChild(wrapper);
+      }
+
+      function startPolling(jobId) {
+        const intervalId = setInterval(async () => {
+          const res = await fetch(`http://localhost:3000/jobs/${jobId}`);
+          const data = await res.json();
+
+          const jobEl = document.getElementById(jobId);
+          jobEl.querySelector(
+            ".status"
+          ).textContent = `${data.status} (${data.progress}%)`;
+          jobEl.querySelector("progress").value = data.progress;
+
+          if (data.status === "completed" || data.status === "failed") {
+            clearInterval(intervalId);
+            jobs.delete(jobId);
+          }
+        }, 1500);
+
+        jobs.set(jobId, intervalId);
+      }
+    </script>
+  </body>
+</html>
