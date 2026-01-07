@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <button id="start">Start Job</button>
+    <div id="jobs"></div>
+
+    <script>
+      const jobsContainer = document.getElementById("jobs");
+
+      document.getElementById("start").onclick = async () => {
+        const res = await fetch("http://localhost:8080/submit", {
+          method: "POST",
+        });
+        const { jobId } = await res.json();
+
+        const row = document.createElement("div");
+        row.style.margin = "8px 0";
+        row.innerHTML = `
+          <strong>${jobId}</strong>
+          <span class="status"> ⏳ Waiting...</span>
+        `;
+        jobsContainer.appendChild(row);
+
+        waitUntilDone(jobId, row);
+      };
+
+      async function waitUntilDone(jobId, row) {
+        try {
+          const res = await fetch(
+            `http://localhost:8080/checkstatus?jobId=${jobId}`
+          );
+
+          if (res.status === 200) {
+            const data = await res.json();
+            row.querySelector(
+              ".status"
+            ).textContent = ` ✅ Completed (${data.progress}%)`;
+            return;
+          }
+
+          waitUntilDone(jobId, row);
+        } catch (e) {
+          console.error(e);
+          setTimeout(() => waitUntilDone(jobId, row), 2000);
+        }
+      }
+    </script>
+  </body>
+</html>

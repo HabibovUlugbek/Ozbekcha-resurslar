@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <button id="start">Start Job</button>
+    <button id="cancel">Cancel Job</button>
+
+    <pre id="log"></pre>
+
+    <script>
+      let lastJobId = null;
+      const log = document.getElementById("log");
+
+      function write(msg) {
+        log.textContent += msg + "\n";
+      }
+
+      document.getElementById("start").onclick = async () => {
+        const res = await fetch("http://localhost:8081/start", {
+          method: "POST",
+        });
+        const { jobId } = await res.json();
+        lastJobId = jobId;
+        write("Started: " + jobId);
+      };
+
+      document.getElementById("cancel").onclick = async () => {
+        if (!lastJobId) return;
+        await fetch(`http://localhost:8081/cancel?jobId=${lastJobId}`, {
+          method: "POST",
+        });
+        write("Canceled: " + lastJobId);
+      };
+    </script>
+  </body>
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <button id="start">Start Job</button>
+    <div id="jobs"></div>
+
+    <script>
+      const jobs = {};
+      const jobsDiv = document.getElementById("jobs");
+
+      const es = new EventSource("http://localhost:8080/events");
+
+      function log(jobId, msg, time) {
+        const div = jobs[jobId];
+        if (!div) return;
+
+        const p = document.createElement("p");
+        p.textContent = `[${time}] ${msg}`;
+        div.appendChild(p);
+      }
+
+      es.addEventListener("job-start", (e) => {
+        const { jobId, timestamp } = JSON.parse(e.data);
+
+        const div = document.createElement("div");
+        div.style.border = "1px solid #ccc";
+        div.style.margin = "5px";
+        div.style.padding = "5px";
+
+        const cancelBtn = document.createElement("button");
+        cancelBtn.textContent = "Cancel";
+        cancelBtn.style.marginLeft = "10px";
+
+        cancelBtn.onclick = async () => {
+          cancelBtn.disabled = true; // prevent double-click
+          try {
+            const res = await fetch(
+              `http://localhost:8080/cancel?jobId=${jobId}`,
+              {
+                method: "POST",
+              }
+            );
+            if (!res.ok) {
+              console.error("Cancel failed:", await res.text());
+            }
+          } catch (err) {
+            console.error("Cancel request error:", err);
+          }
+        };
+
+        const header = document.createElement("div");
+        header.innerHTML = `<b>${jobId}</b>`;
+        header.appendChild(cancelBtn);
+        div.appendChild(header);
+
+        jobs[jobId] = div;
+        jobsDiv.appendChild(div);
+
+        log(jobId, "Started", timestamp);
+      });
+
+      es.addEventListener("job-update", (e) => {
+        const { jobId, progress, timestamp } = JSON.parse(e.data);
+        log(jobId, `Progress: ${progress}`, timestamp);
+      });
+
+      es.addEventListener("job-cancel", (e) => {
+        const { jobId, timestamp } = JSON.parse(e.data);
+        log(jobId, "Canceled ❌", timestamp);
+      });
+
+      document.getElementById("start").onclick = async () => {
+        try {
+          await fetch("http://localhost:8080/start", { method: "POST" });
+        } catch (err) {
+          console.error("Failed to start job:", err);
+        }
+      };
+    </script>
+  </body>
+</html>
