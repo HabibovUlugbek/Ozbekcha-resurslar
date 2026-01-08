@@ -35,6 +35,8 @@ Bu repository Oʻzbek tilida yozilgan:
 - [Rate limiting nima ?](https://habibovulugbek.medium.com/rate-limiting-nima-46677adf49ad)
 - [Single point of failure(SPOF)](https://medium.com/@habibovulugbek/single-point-of-failure-spof-291485d18ba0)
 - [Fail-over va fault tolorence](https://medium.com/@habibovulugbek/fail-over-va-fault-tolorence-018ce8bbf162)
+- [Backend kommunikatsiya usullari (1-qism)](https://medium.com/@habibovulugbek/backend-kommunikatsiya-usullari-1-qism-51fb43a4200b)
+- [Backend kommunikatsiya usullari (2-qism)](https://medium.com/@habibovulugbek/backend-kommunikatsiya-usullari-2-qism-71982050a9e3)
 
 ## 🗄️ Databaza bilimlari
 
