@@ -63,6 +63,7 @@ Bu repository Oʻzbek tilida yozilgan:
 
 ## 🌐 Tarmoq(Networking) bilimlari
 
+- [IP addresslar haqida bilib olamiz .](https://habibovulugbek.medium.com/ip-addresslar-haqida-bilib-olamiz-63296c8dbbd7?postPublishedType=initial)
 - [Internet qanday ishlaydi yoki malumot almashish qanchalik o`zgardi ?](https://habibovulugbek.medium.com/internet-qanday-ishlaydi-yoki-malumot-almashish-qanchalik-o-zgardi-ae79e5dddc13)
 - [Network yoki OSI model qismlari .](https://habibovulugbek.medium.com/network-yoki-osi-model-qismlari-ced6473418f9)
 - [TCP handshake](https://habibovulugbek.medium.com/tcp-handshake-dee5418cef95)
