@@ -80,6 +80,7 @@ Bu repository Oʻzbek tilida yozilgan:
 - [Terminal haqida boshlang`ich bilimlar ?](https://habibovulugbek.medium.com/terminal-haqida-boshlang-ich-bilimlar-d0e865478724)
 - [Processlar orasidagi kommunikatsiya(IPC)](https://habibovulugbek.medium.com/processlar-orasidagi-kommunikatsiya-ipc-6e1d95acba16)
 - [Processlar va thread nima farqi bor ?](https://habibovulugbek.medium.com/process-va-thread-nima-farqi-bor-78201ce6a72f)
+- [Client va server o`rtasida aloqa o`rnatish qanday bo`ladi ? (OS level)](https://medium.com/@habibovulugbek/client-va-server-o-rtasida-aloqa-o-rnatish-qanday-bo-ladi-os-level-0a8ddd53d535)
 
 ## Node.js
 
