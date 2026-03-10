@@ -73,6 +73,7 @@ Bu repository Oʻzbek tilida yozilgan:
 - [HTTP (HTTP versiyalari)](https://habibovulugbek.medium.com/http-http-versiyalari-afb9fe438585)
 - [Biz qaysi IP addressni ishlatamiz ? (NAT)](https://habibovulugbek.medium.com/biz-qaysi-ip-addressni-ishlatamiz-nat-6fc3fae3a32a)
 - [SYN Flood hujumi haqida bilasizmi ?](https://habibovulugbek.medium.com/syn-flood-hujumi-haqida-bilasizmi-d97052879766)
+- [DNS qanday ishlaydi ?](https://medium.com/@habibovulugbek/dns-qanday-ishlaydi-83dca63ba8c6)
 
 ## 🖥️ Operatsion Sistema
 
