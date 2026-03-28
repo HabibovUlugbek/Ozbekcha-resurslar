@@ -37,6 +37,7 @@ Bu repository Oʻzbek tilida yozilgan:
 - [Fail-over va fault tolorence](https://medium.com/@habibovulugbek/fail-over-va-fault-tolorence-018ce8bbf162)
 - [Backend kommunikatsiya usullari (1-qism)](https://medium.com/@habibovulugbek/backend-kommunikatsiya-usullari-1-qism-51fb43a4200b)
 - [Backend kommunikatsiya usullari (2-qism)](https://medium.com/@habibovulugbek/backend-kommunikatsiya-usullari-2-qism-71982050a9e3)
+- [CDN (Content delivery network) qanday ishlaydi ?](https://medium.com/@habibovulugbek/cdn-content-delivery-network-qanday-ishlaydi-b3185bec7152)
 
 ## 🗄️ Databaza bilimlari
 
