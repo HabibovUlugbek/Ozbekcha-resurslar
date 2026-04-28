@@ -38,6 +38,7 @@ Bu repository Oʻzbek tilida yozilgan:
 - [Backend kommunikatsiya usullari (1-qism)](https://medium.com/@habibovulugbek/backend-kommunikatsiya-usullari-1-qism-51fb43a4200b)
 - [Backend kommunikatsiya usullari (2-qism)](https://medium.com/@habibovulugbek/backend-kommunikatsiya-usullari-2-qism-71982050a9e3)
 - [CDN (Content delivery network) qanday ishlaydi ?](https://medium.com/@habibovulugbek/cdn-content-delivery-network-qanday-ishlaydi-b3185bec7152)
+- [Load balancer nima uchun kerak ?](https://medium.com/@habibovulugbek/load-balancer-nima-uchun-kerak-8b01e476340e)
 
 ## 🗄️ Databaza bilimlari
 
