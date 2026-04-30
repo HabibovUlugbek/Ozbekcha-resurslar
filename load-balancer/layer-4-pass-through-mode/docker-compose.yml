@@ -1,0 +1,33 @@
+# docker-compose.yml
+version: "3.8"
+services:
+  haproxy:
+    image: haproxy:latest
+    network_mode: host # Host tarmog'ini shaffoflik uchun ishlatish
+    cap_add:
+      - NET_ADMIN # Tarmoq sozlamalarini o'zgartirishga ruxsat berish (TPROXY uchun)
+    sysctls:
+      - net.ipv4.ip_nonlocal_bind=1 # Mijoz IP manzili ishlatilishi uchun lokal bo'lmagan IP ga bog'lanishni yoqish
+    volumes:
+      - ./haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg:ro
+
+  backend1:
+    build: . # Dockerfile dan rasm yaratish
+    environment:
+      - PORT=3001
+      - SERVER_ID=Server1
+    network_mode: host # Host tarmog'ini ishlatish, shunda u host port 3001 da eshitadi
+
+  backend2:
+    build: . # Dockerfile dan rasm yaratish
+    environment:
+      - PORT=3002
+      - SERVER_ID=Server2
+    network_mode: host # Host tarmog'ini ishlatish, shunda u host port 3002 da eshitadi
+
+  backend3:
+    build: . # Dockerfile dan rasm yaratish
+    environment:
+      - PORT=3003
+      - SERVER_ID=Server3
+    network_mode: host # Host tarmog'ini ishlatish, shunda u host port 3003 da eshitadi

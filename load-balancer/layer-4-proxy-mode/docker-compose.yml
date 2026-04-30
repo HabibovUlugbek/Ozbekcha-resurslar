@@ -1,0 +1,34 @@
+version: "3.8"
+services:
+  haproxy:
+    image: haproxy:latest
+    container_name: haproxy-l4-proxy
+    ports:
+      - "4000:4000"
+    volumes:
+      - ./haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg:ro
+    depends_on:
+      - backend1
+      - backend2
+      - backend3
+
+  backend1:
+    build: .
+    container_name: backend1
+    environment:
+      - PORT=3000
+      - SERVER_ID=Server1
+
+  backend2:
+    build: .
+    container_name: backend2
+    environment:
+      - PORT=3000
+      - SERVER_ID=Server2
+
+  backend3:
+    build: .
+    container_name: backend3
+    environment:
+      - PORT=3000
+      - SERVER_ID=Server3
