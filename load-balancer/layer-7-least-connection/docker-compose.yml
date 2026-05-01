@@ -1,0 +1,37 @@
+version: "3.8"
+services:
+  haproxy:
+    image: haproxy:latest
+    container_name: haproxy-l7-leastconn-log
+    ports:
+      - "4000:4000" # HAProxy portini host port 4000 ga bog'lash
+    volumes:
+      - ./haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg:ro
+    depends_on:
+      - backend1
+      - backend2
+      - backend3
+
+  backend1:
+    build: . # Dockerfile dan rasm yaratish
+    container_name: backend1
+    environment:
+      - PORT=3000
+      - SERVER_ID=Server1
+      - MAX_DELAY=1000 # Har bir so'rov Server1 da 0-1000ms tasodifiy kechikadi
+
+  backend2:
+    build: .
+    container_name: backend2
+    environment:
+      - PORT=3000
+      - SERVER_ID=Server2
+      - MAX_DELAY=1000 # Har bir so'rov Server2 da 0-1000ms tasodifiy kechikadi
+
+  backend3:
+    build: .
+    container_name: backend3
+    environment:
+      - PORT=3000
+      - SERVER_ID=Server3
+      - MAX_DELAY=1000 # Har bir so'rov Server3 da 0-1000ms tasodifiy kechikadi

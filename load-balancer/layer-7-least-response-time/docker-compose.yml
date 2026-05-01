@@ -1,0 +1,39 @@
+version: "3.8"
+services:
+  lb_fastest:
+    build:
+      context: ./load-balancer
+      dockerfile: Dockerfile
+    container_name: l7_nodejs_lb_least_response_time
+    environment:
+      - LB_PORT=4000
+    ports:
+      - "4000:4000"
+    depends_on:
+      - backend1
+      - backend2
+      - backend3
+
+  backend1:
+    build: .
+    container_name: backend1
+    environment:
+      - PORT=3000
+      - SERVER_ID=Server1
+      - MAX_DELAY=1000
+
+  backend2:
+    build: .
+    container_name: backend2
+    environment:
+      - PORT=3000
+      - SERVER_ID=Server2
+      - MAX_DELAY=1000
+
+  backend3:
+    build: .
+    container_name: backend3
+    environment:
+      - PORT=3000
+      - SERVER_ID=Server3
+      - MAX_DELAY=1000
