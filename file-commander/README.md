@@ -1,40 +1,63 @@
-# File Commander
+# File Commander (Fayl Boshqaruvchi)
 
-The File Commander project demonstrates how to use the `fs` module in Node.js to perform file operations based on commands specified in a command text file.
+> Node.js dagi `fs` moduli yordamida matn faylida yozilgan buyruqlar asosida fayl operatsiyalarini avtomatik bajaruvchi dastur.
 
-## Usage
+## 📖 Tushuntirish
 
-1. Create a `command.txt` file with the desired file operations. Each command should be separated by a `;` character.
+**File Commander** — `command.txt` faylidagi buyruqlarni o'qib, fayl tizimida tegishli amallarni bajaradi. Bu Node.js dagi `fs` moduli, fayl kuzatuvi (`fs.watch`) va buyruqlarni parse qilishning amaliy misoli.
 
-   Example `commands.txt` file:
+Dastur `command.txt` faylini kuzatadi. Fayl o'zgarganda, undagi buyruqlarni o'qib bajaradi.
 
-   ```
-   create a file newfile.txt;rename a file oldfile.txt to newfile.txt;delete a file oldfile.txt
-   ```
-
-2. Run the `app.js` script using Node.js.
-
-3. The script will read the command text file and execute the corresponding file operations.
-
-## Command Syntax
-
-The command syntax for the command text file is as follows:
-
-- `create a file <path>`: Creates a new file with the specified filename.
-- `delete a file <path>`: Deletes the file with the specified filename.
-- `rename a file <path> to <path>`: Renames a file from the old name to the new name.
-- `insert to a file <path> content: <content>`: Inserts content into a file. If the file does not exist, it will be created.
-
-## Example
-
-Suppose you have the following `commands.txt` file:
+## 📁 Fayl tuzilmasi
 
 ```
-create a file newfile.txt;rename a file oldfile.txt to newfile.txt;delete a file oldfile.txt
+file-commander/
+├── app.js        — Asosiy dastur (command.txt ni kuzatadi va bajaradi)
+└── command.txt   — Buyruqlar yoziladigan fayl
 ```
 
-Running the `app.js` script will create a new file named `newfile.txt`, rename `oldfile.txt` to `newfile.txt`, and delete `oldfile.txt`.
+## 🚀 Ishga tushirish
 
-Feel free to explore the file commander and customize it according to your needs.
+1. `command.txt` faylini buyruqlar bilan to'ldiring. Buyruqlar `;` bilan ajratiladi:
 
-For more information on the `fs` module and its usage, please refer to the [Node.js documentation](https://nodejs.org/api/fs.html).
+   ```
+   CREATE FILE yangi.txt;RENAME FILE eski.txt TO yangi2.txt;DELETE FILE eski.txt
+   ```
+
+2. Dasturni ishga tushiring:
+
+   ```bash
+   node app.js
+   ```
+
+3. Dastur `command.txt` dagi buyruqlarni o'qib, fayl operatsiyalarini bajaradi.
+
+## 📋 Buyruqlar sintaksisi
+
+| Buyruq                                  | Tavsif                                         |
+| --------------------------------------- | ---------------------------------------------- |
+| `CREATE FILE <yo'l>`                    | Yangi fayl yaratadi                            |
+| `DELETE FILE <yo'l>`                    | Faylni o'chiradi                               |
+| `RENAME FILE <eski> TO <yangi>`         | Faylni qayta nomlaydi                          |
+| `INSERT TO FILE <yo'l> content: <matn>` | Faylga matn yozadi (fayl yo'q bo'lsa yaratadi) |
+
+## 💡 Misol
+
+`command.txt` faylida:
+
+```
+CREATE FILE salom.txt;INSERT TO FILE salom.txt content: Salom dunyo!;RENAME FILE salom.txt TO xayr.txt
+```
+
+`node app.js` ishga tushirilganda:
+
+1. `salom.txt` yaratiladi
+2. Ichiga `Salom dunyo!` yoziladi
+3. `xayr.txt` ga o'zgartiriladi
+
+## 📚 Bog'liq maqolalar
+
+- [Unix qanday ishlaydi?](https://habibovulugbek.medium.com/unix-qanday-ishlaydi-36bf80a69fef)
+- [Terminal haqida boshlang'ich bilimlar](https://habibovulugbek.medium.com/terminal-haqida-boshlang-ich-bilimlar-d0e865478724)
+
+Batafsil `fs` moduli haqida: [Node.js rasmiy hujjatlari](https://nodejs.org/api/fs.html)

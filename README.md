@@ -115,6 +115,56 @@ Bu repository Oʻzbek tilida yozilgan:
 - [Array & Linked list](https://habibovulugbek.medium.com/array-linked-list-f5f709d96797)
 - [Compilerlar dastur kodini qanday ishlatadi ?](https://habibovulugbek.medium.com/compilerlar-dastur-kodini-qanday-ishlatadi-adf8365df6fb)
 
+---
+
+## 🧪 Amaliyot (Kod namunalari)
+
+Real implementatsiyalar — maqolalardagi nazariyani amalda ko'ring:
+
+### ⚙️ System Design
+
+| Papka                                                      | Mavzu                                       | Maqola                                                                                                                                                                                              |
+| ---------------------------------------------------------- | ------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [backend-communication-ways/](backend-communication-ways/) | Short/Long Polling, WebSocket, SSE, Pub/Sub | [1-qism](https://medium.com/@habibovulugbek/backend-kommunikatsiya-usullari-1-qism-51fb43a4200b) · [2-qism](https://medium.com/@habibovulugbek/backend-kommunikatsiya-usullari-2-qism-71982050a9e3) |
+| [bloom-filters/](bloom-filters/)                           | Bloom Filter + benchmark                    | [Nazariya](https://habibovulugbek.medium.com/bloom-filters-f6e9e72dbe5c) · [Amaliyot](https://habibovulugbek.medium.com/bloom-filters-amalda-noldan-kod-yozib-benchmark-qilamiz-5d08bf786cc7)       |
+| [consistent-hashing/](consistent-hashing/)                 | Consistent Hashing + virtual nodes          | [Nazariya](https://habibovulugbek.medium.com/consistent-hashing-dddfb60a9d20) · [Amaliyot](https://habibovulugbek.medium.com/consistent-hashing-0-dan-yozamiz-benchmark-bilan-91130446cbeb)         |
+| [load-balancer/](load-balancer/)                           | HAProxy Layer 4/7, Least Connection         | [Maqola](https://medium.com/@habibovulugbek/load-balancer-nima-uchun-kerak-8b01e476340e)                                                                                                            |
+
+### 🗄️ Databaza
+
+| Papka                                                        | Mavzu                                      | Maqola                                                                                                                                                                    |
+| ------------------------------------------------------------ | ------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [database-connection-pooling/](database-connection-pooling/) | Connection Pool + benchmark                | [Maqola](https://habibovulugbek.medium.com/connection-pooling-benchmark-bilan-30246ba17d70)                                                                               |
+| [database-partitioning/](database-partitioning/)             | RANGE partitioning + 10M qator             | [Maqola](https://habibovulugbek.medium.com/database-partitioning-demo-bilan-31897de181cc)                                                                                 |
+| [database-replication/](database-replication/)               | Replication (nazariy)                      | [Maqola](https://habibovulugbek.medium.com/database-replication-636c19042fb7)                                                                                             |
+| [database-sharding/](database-sharding/)                     | Sharding + Consistent Hashing + migratsiya | [Sharding](https://habibovulugbek.medium.com/database-sharding-791e01d38a90) · [Amaliyot](https://habibovulugbek.medium.com/note-app-bilan-sharding-qilamiz-6aafd0a1d72c) |
+
+### 🌐 Tarmoq (Networking)
+
+| Papka                | Mavzu                            | Maqola                                                                                                                                               |
+| -------------------- | -------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [network/](network/) | TCP, UDP, Chat App, Fayl yuklash | [TCP va UDP](https://habibovulugbek.medium.com/tcp-va-udp-8ee56341c713) · [DNS](https://medium.com/@habibovulugbek/dns-qanday-ishlaydi-83dca63ba8c6) |
+
+### 🖥️ Node.js
+
+| Papka                              | Mavzu                                              | Maqola                                                                                                                                                                                                               |
+| ---------------------------------- | -------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [stream/](stream/)                 | Custom Readable/Writable/Duplex stream + benchmark | [Stream nima?](https://habibovulugbek.medium.com/stream-nima-nodejsda-ortida-streamlar-qanday-ishlaydi-77256825ec51) · [Benchmark](https://habibovulugbek.medium.com/streamni-benchmark-qilamiz-nodejs-4aa153c614f2) |
+| [worker-threads/](worker-threads/) | MessagePort, MessageChannel, workerData            | [Maqola](https://habibovulugbek.medium.com/nodejsda-worker-threads-concurrency-va-parallelism-6ff1c383e381)                                                                                                          |
+| [threadpool/](threadpool/)         | ThreadPool klassi + benchmark                      | [Maqola](https://habibovulugbek.medium.com/thread-pool-nima-3bf306583840)                                                                                                                                            |
+| [clustering/](clustering/)         | Cluster + benchmark + IPC                          | [Maqola](https://habibovulugbek.medium.com/nodejsda-clustering-c11125c6057e)                                                                                                                                         |
+| [child-process/](child-process/)   | exec, spawn, fork misollari                        | [Maqola](https://habibovulugbek.medium.com/nodejsda-child-process-aa8312dcc228)                                                                                                                                      |
+| [events-module/](events-module/)   | EventEmitter noldan implementatsiya                | [Maqola](https://habibovulugbek.medium.com/nodejs-nimalardan-iborat-va-qanday-qurilgan-7dbc6f1a041a)                                                                                                                 |
+
+### 🖧 Operatsion Sistema
+
+| Papka                                            | Mavzu                            | Maqola                                                                                        |
+| ------------------------------------------------ | -------------------------------- | --------------------------------------------------------------------------------------------- |
+| [process-communication/](process-communication/) | Stdin/Stdout, Unix Domain Socket | [IPC](https://habibovulugbek.medium.com/processlar-orasidagi-kommunikatsiya-ipc-6e1d95acba16) |
+| [file-commander/](file-commander/)               | fs moduli, fayl operatsiyalari   | [Unix](https://habibovulugbek.medium.com/unix-qanday-ishlaydi-36bf80a69fef)                   |
+
+---
+
 ## 🤝 Hissa qoʻshish
 
 PR ochishingiz mumkin:

@@ -1,48 +1,109 @@
-# Networking with Node.js
+# Tarmoq (Networking) — Node.js
 
-In this section, I cover networking with Node.js. You can find examples and explanations on how to create a simple TCP server and client in this README.
+> Node.js bilan TCP, UDP va Unix socket'lari orqali tarmoq dasturlash: sodda serverlar, chat ilova va fayl yuklash misollari.
 
-Feel free to explore the examples and learn how to build networking applications with Node.js.
+![OSI Model](../diagrams/osi-model/osi-model.png)
 
-## Table of Contents
+![DNS Diagram](../diagrams/DNS/DNS.png)
 
-- [TCP Server](#tcp-server)
-- [TCP Client](#tcp-client)
+![Connection Establishment](../diagrams/connection-establishment/connection-establishment.png)
 
-## TCP Server
+## 📁 Fayl tuzilmasi
 
-The TCP server example demonstrates how to create a simple TCP server using Node.js. The server listens on a specified port and handles incoming connections from clients.
+```
+network/
+├── simple-tcp/
+│   ├── simple-tcp-server.js    — Oddiy TCP server (port 3000)
+│   └── simple-tcp-client.js    — TCP klient (ulanadi va salom yuboradi)
+├── simple-udp/
+│   ├── reciever.js             — UDP qabul qiluvchi (port 8000)
+│   └── sender.js               — UDP jo'natuvchi (127.0.0.1:8000)
+├── chat-app/
+│   ├── server.js               — TCP server (barcha ulanishlarni boshqaradi)
+│   └── client.js               — Interaktiv TCP klient (readline bilan)
+└── uploader/
+    ├── server.js               — Fayl qabul qiluvchi server (progress bilan)
+    ├── client.js               — Fayl yuboruvchi klient
+    └── info.txt                — Ishlatiladigan modullar: net, fs, stream, buffer
+```
 
-To run the TCP server example, follow these steps:
+---
 
-1. Run the TCP server:
+## 🚀 Ishga tushirish
 
-   ```bash
-    node simple-tcp-server.js
-   ```
+### TCP Server va Klient
 
-2. The server will start listening on port `3000`.
+```bash
+# Terminal 1 — Server
+cd simple-tcp
+node simple-tcp-server.js
+# Port 3000 da tinglaydi
 
-3. You can connect to the server using a TCP client.
+# Terminal 2 — Klient
+node simple-tcp-client.js
+# Serverga ulanadi va "Hello" yuboradi
+```
 
-## TCP Client
+### UDP Jo'natish va Qabul qilish
 
-The TCP client example demonstrates how to create a simple TCP client using Node.js. The client connects to a TCP server and sends a message to the server.
+```bash
+# Terminal 1 — Qabul qiluvchi
+cd simple-udp
+node reciever.js
+# Port 8000 da UDP paketlarni kutadi
 
-To run the TCP client example, follow these steps:
+# Terminal 2 — Jo'natuvchi
+node sender.js
+# 127.0.0.1:8000 ga UDP paket yuboradi
+```
 
-1. Run the TCP client:
+### Chat Ilovasi (TCP asosida)
 
-   ```bash
-    node simple-tcp-client.js
-   ```
+```bash
+# Terminal 1 — Server
+cd chat-app
+node server.js
 
-2. The client will connect to the server running on `localhost:3000`.
+# Terminal 2, 3... — Klientlar (bir nechta bo'lishi mumkin)
+node client.js
+# Terminalga xabar yozing — boshqa klientlarga yuboriladi
+```
 
-3. You can send a message to the server by typing it in the terminal.
+### Fayl Yuklash
 
-Feel free to explore the TCP server and client examples and customize them according to your needs.
+```bash
+# Terminal 1 — Server
+cd uploader
+node server.js
 
-For more information on networking with Node.js, you can refer to the official [Node.js documentation](https://nodejs.org/api/net.html).
+# Terminal 2 — Klient
+node client.js
+# Faylni stream orqali serverga yuboradi, progress ko'rsatadi
+```
 
-I hope you find these examples helpful in understanding how to work with networking in Node.js. Happy coding!
+---
+
+## 🔍 TCP vs UDP
+
+| Xususiyat | TCP                         | UDP                    |
+| --------- | --------------------------- | ---------------------- |
+| Ulanish   | ✅ (3-way handshake)        | ❌ (connectionless)    |
+| Kafolat   | ✅ (barcha paketlar yetadi) | ❌ (yo'qolishi mumkin) |
+| Tartib    | ✅                          | ❌                     |
+| Tezlik    | O'rtacha                    | Tez                    |
+| Ishlatish | HTTP, fayl yuklash          | Video stream, o'yinlar |
+
+---
+
+## 📚 Bog'liq maqolalar
+
+- [TCP va UDP](https://habibovulugbek.medium.com/tcp-va-udp-8ee56341c713)
+- [TCP handshake](https://habibovulugbek.medium.com/tcp-handshake-dee5418cef95)
+- [TCP slow start](https://habibovulugbek.medium.com/tcp-slow-start-6e6e88d3899b)
+- [HTTP (HTTP versiyalari)](https://habibovulugbek.medium.com/http-http-versiyalari-afb9fe438585)
+- [DNS qanday ishlaydi?](https://medium.com/@habibovulugbek/dns-qanday-ishlaydi-83dca63ba8c6)
+- [Network yoki OSI model qismlari](https://habibovulugbek.medium.com/network-yoki-osi-model-qismlari-ced6473418f9)
+- [Internet qanday ishlaydi?](https://habibovulugbek.medium.com/internet-qanday-ishlaydi-yoki-malumot-almashish-qanchalik-o-zgardi-ae79e5dddc13)
+- [Stream orqali chat app quramiz](https://habibovulugbek.medium.com/stream-orqali-chat-app-quramiz-2766cd7a1135)
+
+Rasmiy hujjatlar: [Node.js Net API](https://nodejs.org/api/net.html)

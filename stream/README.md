@@ -1,63 +1,120 @@
-# Streams in Node.js
+# Stream (Ma'lumot Oqimlari)
 
-Streams are a fundamental concept in Node.js that allow for efficient handling of data, especially when dealing with large amounts of information. In this repository, we will explore the usage of streams by benchmarking different stream implementations, creating custom streams, and ultimately building an encrypt/decrypt project using transform streams.
+> Node.js da streamlar yordamida katta hajmdagi ma'lumotlarni xotirada to'liq saqlamasdan, bo'laklab qayta ishlash.
 
-## Benchmarking Streams
+## 📖 Tushuntirish
 
-To understand the performance characteristics of different stream implementations, we will conduct benchmarking tests. By comparing the speed and memory usage of various stream types, we can make informed decisions about which streams are best suited for specific use cases.
+**Stream** — ma'lumotlarni qismlarga bo'lib qayta ishlash mexanizmi. 1 GB faylni to'liq xotiraga yuklamasdan, oz-ozdan o'qib ishlash mumkin.
 
-## Benchmarking Stream Writing
+### Stream turlari
 
-To benchmark stream writing from 1 to millions in a file, we can compare different solutions using various stream implementations. Here are five solutions to consider:
+| Tur           | Tavsif                     | Misol                     |
+| ------------- | -------------------------- | ------------------------- |
+| **Readable**  | Faqat o'qish               | Fayl o'qish, HTTP so'rovi |
+| **Writable**  | Faqat yozish               | Fayl yozish, HTTP javobi  |
+| **Duplex**    | Ikki tomon                 | TCP socket                |
+| **Transform** | O'qib, o'zgartirib, yozadi | Gzip, Shifrlash           |
 
-1. **promise fs**: This solution utilizes the `fs/promises` module, which provides promise-based APIs for file operations. By leveraging promises, you can write numbers to a file in an asynchronous and non-blocking manner.
+### Backpressure
 
-2. **callback fs**: This solution uses the traditional callback-based APIs of the `fs` module. It allows you to write numbers to a file using callbacks, which can be useful in certain scenarios where callback-based programming is preferred.
+Writable stream sekin ishlasa, Readable stream to'xtaydi. Bu xotira to'lib ketishining oldini oladi.
 
-3. **synchronous fs**: This solution involves using synchronous file operations provided by the `fs` module. While synchronous operations can block the event loop, they can be simpler to work with in certain cases. You can benchmark the performance of writing numbers synchronously to a file.
+---
 
-4. **naive stream solution**: This solution involves using a basic implementation of a writable stream to write numbers to a file. While this approach may not be the most efficient, it can serve as a starting point for understanding the fundamentals of stream writing.
+## 📁 Fayl tuzilmasi
 
-5. **better solution**: This solution involves using a more optimized and efficient implementation of a writable stream. By leveraging the power of Node.js stream APIs, you can improve the performance of writing numbers to a file.
+```
+stream/
+├── stream-usage/
+│   ├── fs-promise-solution.js      — Promise asosida (9.3s, 50-60MB)
+│   ├── fs-callback-solution.js     — Callback asosida (1.4s, 1GB xotira!)
+│   ├── fs-sync-solution.js         — Sinxron (1.8s, 40MB)
+│   ├── naive-stream-solution.js    — Sodda stream (1s)
+│   └── better-stream-solution.js   — Backpressure bilan (245ms, 30MB) ⭐
+├── custom-readable-stream/
+│   ├── readableStream.js           — Fayl o'quvchi custom Readable stream
+│   ├── index.js                    — Foydalanish misoli
+│   └── input.txt                   — Test fayli
+├── custom-writable-stream/
+│   ├── writableStream.js           — Faylga yozuvchi custom Writable stream
+│   ├── index.js                    — Foydalanish misoli
+│   └── output.txt                  — Natija fayli
+└── custom-duplex-stream/
+    ├── duplexStream.js             — Bir vaqtda o'qib va yozuvchi Duplex stream
+    ├── index.js                    — Foydalanish misoli
+    ├── read.txt                    — O'qish fayli
+    └── write.txt                   — Yozish fayli
+```
 
-By benchmarking these different solutions, you can gain insights into their performance characteristics and make informed decisions about which approach is best suited for your specific use case.
+---
 
-Remember to consider factors such as speed, memory usage, and scalability when evaluating the performance of each solution.
+## 🚀 Ishga tushirish
 
-You can see the implementation of these different stream solutions in the `stream-usage`folder of this repository. The folder contains separate files for each solution, showcasing the code and usage examples for benchmarking stream writing.
+### Stream benchmark (1 million sonni faylga yozish)
 
-Feel free to explore the code and experiment with different stream implementations to understand their performance characteristics and choose the best approach for your specific use case.
+```bash
+cd stream-usage
 
-Happy coding!
+# Promise asosida (eng sekin, xotira o'rtacha)
+node fs-promise-solution.js
 
-## Creating Custom Streams
+# Callback (tez, lekin 1GB xotira sarflaydi!)
+node fs-callback-solution.js
 
-In addition to exploring built-in streams, we will also dive into creating our own custom streams. Custom streams provide flexibility and allow us to tailor the data processing to our specific needs. We will explore both readable and writable custom streams, leveraging the power of Node.js stream APIs.
+# Sinxron (o'rtacha)
+node fs-sync-solution.js
 
-### Custom Writable Stream
+# Sodda stream
+node naive-stream-solution.js
 
-A writable custom stream allows us to define how data is written to a destination. By extending the `Writable` class from the Node.js `stream` module, we can create a custom writable stream that processes data in a specific way. This can be useful for tasks such as logging, data transformation, or writing to a custom data store.
-
-So I have create a custom writable stream which gets a file path and writes the data to that file. You can find the implementation in the `custom-writable-stream` folder.
+# Backpressure bilan optimallashtrilgan (eng tez va kam xotira) ⭐
+node better-stream-solution.js
+```
 
 ### Custom Readable Stream
 
-A readable custom stream allows us to define how data is read from a source. By extending the `Readable` class from the Node.js `stream` module, we can create a custom readable stream that generates data in a specific way. This can be useful for tasks such as reading from a custom data source, generating data on-the-fly, or processing data before it is consumed.
+```bash
+cd custom-readable-stream
+node index.js
+# input.txt ni stream orqali o'qib konsolga chiqaradi
+```
 
-So I have create a custom readable stream which gets a file path and reads and logs that. You can find the implementation in the `custom-readable-stream` folder.
+### Custom Writable Stream
+
+```bash
+cd custom-writable-stream
+node index.js
+# Ma'lumotni stream orqali output.txt ga yozadi
+```
 
 ### Custom Duplex Stream
 
-A duplex stream combines the functionality of both readable and writable streams, allowing for bidirectional data flow. By extending the `Duplex` class from the Node.js `stream` module, we can create a custom duplex stream that processes data in both directions. This can be useful for tasks such as data transformation, protocol handling, or real-time communication.
+```bash
+cd custom-duplex-stream
+node index.js
+# read.txt dan o'qiydi, write.txt ga yozadi
+```
 
-So I have create a custom duplex stream which gets a file paths and reads and writes the data from files. You can find the implementation in the `custom-duplex-stream` folder.
+---
 
-By creating custom streams, we can tailor the data processing to our specific needs and build powerful data pipelines that efficiently handle data in Node.js.
+## 📊 Benchmark natijalari (1M son faylga yozish)
 
-## Encrypt/Decrypt Project using Transform Streams
+| Yechim              | Vaqt      | Xotira       |
+| ------------------- | --------- | ------------ |
+| Promise fs          | 9.3s      | 50-60 MB     |
+| Callback fs         | 1.4s      | ~1 GB ❌     |
+| Sinxron fs          | 1.8s      | 40 MB        |
+| Sodda stream        | 1s        | 35 MB        |
+| Backpressure stream | **245ms** | **30 MB** ⭐ |
 
-To demonstrate the practical application of streams, we will build an encrypt/decrypt project using transform streams. Transform streams allow us to modify data as it passes through the stream pipeline. By leveraging encryption algorithms, we can securely encrypt and decrypt data in real-time, providing a valuable tool for data protection.
+---
 
-Stay tuned as we dive deeper into the world of streams and explore their vast potential in Node.js!
+## 📚 Bog'liq maqolalar
 
-For more information on streams in Node.js, please refer to the [official Node.js documentation](https://nodejs.org/api/stream.html).
+- [Stream nima? Nodejs ortida streamlar qanday ishlaydi?](https://habibovulugbek.medium.com/stream-nima-nodejsda-ortida-streamlar-qanday-ishlaydi-77256825ec51)
+- [Custom streamlar yozamiz (Nodejs)](https://habibovulugbek.medium.com/custom-streamlar-yozamiz-nodejs-65eaf08185e7)
+- [Streamni benchmark qilamiz (nodejs)](https://habibovulugbek.medium.com/streamni-benchmark-qilamiz-nodejs-4aa153c614f2)
+- [Stream orqali chat app quramiz](https://habibovulugbek.medium.com/stream-orqali-chat-app-quramiz-2766cd7a1135)
+- [Buffer haqida bilib olamiz (Nodejs)](https://habibovulugbek.medium.com/buffer-haqida-bilib-olamiz-nodejs-9e8193c387da)
+
+Rasmiy hujjatlar: [Node.js Stream API](https://nodejs.org/api/stream.html)
