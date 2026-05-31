@@ -33,12 +33,14 @@ Bu repository Oʻzbek tilida yozilgan:
 - [Bloom filters](https://habibovulugbek.medium.com/bloom-filters-f6e9e72dbe5c)
 - [Bloom filters amalda: Noldan kod yozib, benchmark qilamiz](https://habibovulugbek.medium.com/bloom-filters-amalda-noldan-kod-yozib-benchmark-qilamiz-5d08bf786cc7)
 - [Rate limiting nima ?](https://habibovulugbek.medium.com/rate-limiting-nima-46677adf49ad)
+- [Token bucket rate limiting algoritmini 0 dan yozamiz !!](https://medium.com/@habibovulugbek/token-bucket-rate-limiting-algoritmini-0-dan-yozamiz-3e95f7f36490)
 - [Single point of failure(SPOF)](https://medium.com/@habibovulugbek/single-point-of-failure-spof-291485d18ba0)
 - [Fail-over va fault tolorence](https://medium.com/@habibovulugbek/fail-over-va-fault-tolorence-018ce8bbf162)
 - [Backend kommunikatsiya usullari (1-qism)](https://medium.com/@habibovulugbek/backend-kommunikatsiya-usullari-1-qism-51fb43a4200b)
 - [Backend kommunikatsiya usullari (2-qism)](https://medium.com/@habibovulugbek/backend-kommunikatsiya-usullari-2-qism-71982050a9e3)
 - [CDN (Content delivery network) qanday ishlaydi ?](https://medium.com/@habibovulugbek/cdn-content-delivery-network-qanday-ishlaydi-b3185bec7152)
 - [Load balancer nima uchun kerak ?](https://medium.com/@habibovulugbek/load-balancer-nima-uchun-kerak-8b01e476340e)
+- [Load balancerlar bilan real amaliyot](https://medium.com/@habibovulugbek/load-balancerlar-bilan-real-amaliyot-46b5aa336855)
 
 ## 🗄️ Databaza bilimlari
 

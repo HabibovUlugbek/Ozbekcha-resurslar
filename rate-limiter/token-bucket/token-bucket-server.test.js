@@ -1,11 +1,10 @@
 const http = require("http");
 
 const SERVER_URL = "http://localhost:3000/token-bucket";
-const CAPACITY = 5; // must match server: new TokenBucketRateLimiter(5, 1)
-const REFILL_RATE = 1; // tokens per second
-const WAIT_MS = 3000; // wait 3 seconds → should regain 3 tokens
+const CAPACITY = 5; // serverdagi limiter sig'imi bilan mos bo'lishi kerak: new TokenBucketRateLimiter(5, 1)
+const REFILL_RATE = 1; // tokenlar soni sekundiga qancha to'ldiriladi
+const WAIT_MS = 3000; // 3 soniya kut → ~3 token qayta to'ldirilishi kerak
 
-// ─── helper: send one request as a specific user ────────────────────────────
 function sendRequest(userId) {
   return new Promise((resolve) => {
     const options = {
@@ -25,7 +24,6 @@ function sendRequest(userId) {
   });
 }
 
-// ─── simulate one user sending `count` rapid requests ───────────────────────
 async function simulateUser(userId, count) {
   const log = { userId, accepted: [], rejected: [] };
 
@@ -41,10 +39,9 @@ async function simulateUser(userId, count) {
   return log;
 }
 
-// ─── main ────────────────────────────────────────────────────────────────────
 (async () => {
   const USERS = ["alice", "bob", "charlie"];
-  const REQUESTS_PER_USER = 8; // more than capacity to trigger rejections
+  const REQUESTS_PER_USER = 8; // sig'imdan ko'p so'rov yuborib, rad etilishni ko'rsatish uchun
 
   console.log(`${"─".repeat(55)}`);
   console.log(` Token-Bucket Server Test`);
@@ -54,7 +51,6 @@ async function simulateUser(userId, count) {
   console.log(` Each user sends ${REQUESTS_PER_USER} rapid requests`);
   console.log(`${"─".repeat(55)}\n`);
 
-  // ── Phase 1: burst requests for every user ─────────────────────────────────
   console.log("Phase 1 — Burst requests (all users simultaneously)\n");
 
   const results = await Promise.all(
@@ -70,7 +66,6 @@ async function simulateUser(userId, count) {
     );
   }
 
-  // ── Phase 2: wait for tokens to refill, then retry ────────────────────────
   const refillTokens = Math.min(
     CAPACITY,
     Math.floor((WAIT_MS / 1000) * REFILL_RATE),

@@ -22,7 +22,7 @@ function section(title) {
 }
 
 // ─────────────────────────────────────────────
-// Test 1: Requests within capacity are allowed
+// Test 1: Sig'im ichidagi so'rovlar ruxsat etiladi
 // ─────────────────────────────────────────────
 section("Test 1: Requests within capacity are allowed");
 {
@@ -37,7 +37,7 @@ section("Test 1: Requests within capacity are allowed");
 }
 
 // ─────────────────────────────────────────────
-// Test 2: Requests beyond capacity are rejected
+// Test 2: Sig'imdan ortiq so'rovlar rad etiladi
 // ─────────────────────────────────────────────
 section("Test 2: Requests beyond capacity are rejected");
 {
@@ -54,13 +54,13 @@ section("Test 2: Requests beyond capacity are rejected");
 }
 
 // ─────────────────────────────────────────────
-// Test 3: Tokens refill over time
+// Test 3: Vaqt o'tishi bilan tokenlar to'ldiriladi
 // ─────────────────────────────────────────────
 section("Test 3: Tokens refill over time");
 (async () => {
   const limiter = new TokenBucketRateLimiter(3, 3); // 3 tokens, refill 3/sec
 
-  // Drain all tokens
+  // Barcha tokenlarni ishlatib bo'shatamiz
   for (let i = 0; i < 3; i++) limiter.isAllowed("user3");
 
   const beforeRefill = limiter.isAllowed("user3");
@@ -80,16 +80,16 @@ section("Test 3: Tokens refill over time");
   );
 
   // ─────────────────────────────────────────────
-  // Test 4: Tokens do not exceed capacity
+  // Test 4: Tokenlar sig'imdan oshmaydi
   // ─────────────────────────────────────────────
-  section("Test 4: Tokens do not exceed capacity");
+  section("Test 4: Tokenlar sig'imdan oshmaydi");
   {
-    const limiter2 = new TokenBucketRateLimiter(5, 10); // capacity 5, fast refill
+    const limiter2 = new TokenBucketRateLimiter(5, 10); // sig'im 5, tez to'ldirish
 
-    // Drain all 5
+    // Barcha 5 tokenni ishlatib bo'shatamiz
     for (let i = 0; i < 5; i++) limiter2.isAllowed("user4");
 
-    // Wait 2 seconds — would add 20 tokens but cap is 5
+    // 2 soniya kutamiz — 20 token qo'shiladi, lekin sig'im 5
     await sleep(2000);
 
     const state = limiter2.getCurrentState("user4");
@@ -109,9 +109,9 @@ section("Test 3: Tokens refill over time");
   }
 
   // ─────────────────────────────────────────────
-  // Test 5: Different users have independent buckets
+  // Test 5: Turli foydalanuvchilar mustaqil bucketlarga ega
   // ─────────────────────────────────────────────
-  section("Test 5: Different users have independent buckets");
+  section("Test 5: Turli foydalanuvchilar mustaqil bucketlarga ega");
   {
     const limiter3 = new TokenBucketRateLimiter(2, 1);
 
@@ -125,13 +125,13 @@ section("Test 3: Tokens refill over time");
 
     assert(
       userAResult === false,
-      "userA is rate-limited after exhausting bucket",
+      "userA bucket to'ldirilgandan so'ng cheklangan",
     );
-    assert(userBResult === true, "userB is unaffected by userA's limit");
+    assert(userBResult === true, "userB userA cheklovidan ta'sirlanmagan");
   }
 
   // ─────────────────────────────────────────────
-  // Test 6: Burst then throttle
+  // Test 6: Burst so'ng throttle qilish
   // ─────────────────────────────────────────────
   section("Test 6: Burst then throttle pattern");
   {
@@ -147,7 +147,7 @@ section("Test 3: Tokens refill over time");
     // Immediately after burst — rejected
     assert(
       limiter4.isAllowed("user6") === false,
-      "Request rejected immediately after burst",
+      "So'nggi burstdan keyin so'rov rad etildi",
     );
   }
 
