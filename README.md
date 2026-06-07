@@ -41,6 +41,7 @@ Bu repository Oʻzbek tilida yozilgan:
 - [CDN (Content delivery network) qanday ishlaydi ?](https://medium.com/@habibovulugbek/cdn-content-delivery-network-qanday-ishlaydi-b3185bec7152)
 - [Load balancer nima uchun kerak ?](https://medium.com/@habibovulugbek/load-balancer-nima-uchun-kerak-8b01e476340e)
 - [Load balancerlar bilan real amaliyot](https://medium.com/@habibovulugbek/load-balancerlar-bilan-real-amaliyot-46b5aa336855)
+- [Forward va reverse proxy nima ? (amaliyot bilan)](https://medium.com/@habibovulugbek/forward-va-reverse-proxy-nima-amaliyot-bilan-19457ba2020a)
 
 ## 🗄️ Databaza bilimlari
 
