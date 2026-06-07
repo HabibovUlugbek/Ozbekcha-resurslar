@@ -1,0 +1,25 @@
+services:
+  nginx:
+    image: nginx:alpine
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf:ro
+
+  server-a:
+    image: node:18-alpine
+    working_dir: /app
+    volumes:
+      - ./:/app
+    command: node server-a.js
+    expose:
+      - "3000"
+
+  server-b:
+    image: node:18-alpine
+    working_dir: /app
+    volumes:
+      - ./:/app
+    command: node server-b.js
+    expose:
+      - "3000"
