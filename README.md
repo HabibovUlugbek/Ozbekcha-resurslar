@@ -34,6 +34,7 @@ Bu repository Oʻzbek tilida yozilgan:
 - [Bloom filters amalda: Noldan kod yozib, benchmark qilamiz](https://habibovulugbek.medium.com/bloom-filters-amalda-noldan-kod-yozib-benchmark-qilamiz-5d08bf786cc7)
 - [Rate limiting nima ?](https://habibovulugbek.medium.com/rate-limiting-nima-46677adf49ad)
 - [Token bucket rate limiting algoritmini 0 dan yozamiz !!](https://medium.com/@habibovulugbek/token-bucket-rate-limiting-algoritmini-0-dan-yozamiz-3e95f7f36490)
+- [Leaky bucket rate limiting algoritmini yozamiz!](https://medium.com/@habibovulugbek/leaky-bucket-rate-limiting-algoritmini-yozamiz-193d4a225b8c)
 - [Single point of failure(SPOF)](https://medium.com/@habibovulugbek/single-point-of-failure-spof-291485d18ba0)
 - [Fail-over va fault tolorence](https://medium.com/@habibovulugbek/fail-over-va-fault-tolorence-018ce8bbf162)
 - [Backend kommunikatsiya usullari (1-qism)](https://medium.com/@habibovulugbek/backend-kommunikatsiya-usullari-1-qism-51fb43a4200b)
