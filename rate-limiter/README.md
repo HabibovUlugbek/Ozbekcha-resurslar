@@ -6,11 +6,15 @@ Rate limiting — bu serverga kelayotgan so'rovlar sonini cheklash usuli. Bu res
 
 ```
 rate-limiter/
-├── server.js                        # HTTP server (middleware bilan)
-└── token-bucket/
-    ├── rate-limiter.js              # Token Bucket implementatsiyasi
+├── server.js                        # HTTP server (/token-bucket va /leaky-bucket)
+├── token-bucket/
+│   ├── rate-limiter.js              # Token Bucket implementatsiyasi
+│   ├── rate-limiter.test.js         # Unit testlar (serversiz)
+│   └── token-bucket-server.test.js  # Server integratsiya (e2e) testi
+└── leaky-bucket/
+    ├── rate-limiter.js              # Leaky Bucket implementatsiyasi
     ├── rate-limiter.test.js         # Unit testlar (serversiz)
-    └── token-bucket-server.test.js  # Server integratsiya testi
+    └── leaky-bucket-server.test.js  # Server integratsiya (e2e) testi
 ```
 
 ---
@@ -63,6 +67,52 @@ limiter.getCurrentState("user-123");
 
 ---
 
+## Leaky Bucket algoritmi
+
+Leaky Bucket — so'rovlarni **navbatga qo'yib, doimiy tezlikda** qayta ishlaydigan algoritm (traffic shaping). Teshigi bor chelakka o'xshaydi: suv (so'rovlar) tepadan tushadi, pastdan bir tekis oqib chiqadi.
+
+### Qanday ishlaydi?
+
+```
+Bucket (navbat sig'imi: 5)
+│
+├── Har so'rov navbatga qo'yiladi (fill)
+├── Navbat to'la bo'lsa → so'rov rad etiladi (429)
+├── So'rovlar doimiy tezlikda oqib chiqadi (consumeRate: N/sek)
+└── Qabul qilingan so'rov navbatdan oqib chiqqanda qayta ishlanadi
+```
+
+### Token Bucket bilan farqi
+
+| Xususiyat        | Token Bucket                       | Leaky Bucket                          |
+| ---------------- | ---------------------------------- | ------------------------------------- |
+| **Burst**        | Ruxsat beradi (token zaxirasi)     | Yo'q — chiqish tezligi doim bir tekis |
+| **Chiqish oqimi** | Notekis bo'lishi mumkin            | Doimiy, silliq (traffic shaping)      |
+| **Javob vaqti**  | Sinxron (darhol allow/deny)        | Qabul qilingan so'rov kutadi (paced)  |
+| **Model**        | `isAllowed()` → `true`/`false`     | `schedule()` → `Promise`              |
+
+### LeakyBucket (ichki sinf)
+
+```javascript
+const bucket = new LeakyBucket(capacity, consumeRate);
+bucket.fill(request); // true → navbatga qo'shildi, false → navbat to'la
+bucket.startLeaking(); // fon taymerini boshlaydi (so'rovlarni oqizadi)
+bucket.getCurrentState(); // { queued, capacity, consumeRate, isLeaking }
+```
+
+### LeakyBucketRateLimiter (asosiy sinf)
+
+Har bir foydalanuvchi uchun alohida bucket boshqaradi. Token Bucketdan farqi — `schedule()` **Promise** qaytaradi: qabul qilingan so'rov navbatdan oqib chiqqanda `true` bilan, navbat to'la bo'lsa darhol `false` bilan hal bo'ladi.
+
+```javascript
+const limiter = new LeakyBucketRateLimiter(5, 1); // 5 navbat, 1 so'rov/sekund
+const accepted = await limiter.schedule("user-123"); // true (oqdi) yoki false (rad)
+limiter.getCurrentState("user-123");
+limiter.stopAll(); // barcha fon taymerlarini to'xtatadi
+```
+
+---
+
 ## Middleware pattern
 
 `server.js` da rate limiter middleware sifatida ishlatiladi — Express.js dagi `(req, res, next)` pattern bilan bir xil:
@@ -97,9 +147,13 @@ node server.js
 # Ruxsat etilgan so'rov
 curl -H "x-user-id: alice" http://localhost:3000/token-bucket
 
-# Limit oshganda (429)
+# Token bucket — limit oshganda (429)
 for i in {1..8}; do curl -s -o /dev/null -w "%{http_code}\n" \
   -H "x-user-id: alice" http://localhost:3000/token-bucket; done
+
+# Leaky bucket — parallel so'rovlar (navbat to'lganda 429)
+for i in {1..8}; do curl -s -o /dev/null -w "%{http_code}\n" \
+  -H "x-user-id: bob" http://localhost:3000/leaky-bucket & done; wait
 ```
 
 ---
@@ -109,12 +163,14 @@ for i in {1..8}; do curl -s -o /dev/null -w "%{http_code}\n" \
 ```bash
 # Unit testlar (server shart emas)
 node token-bucket/rate-limiter.test.js
+node leaky-bucket/rate-limiter.test.js
 
-# Server integratsiya testi (avval server ishga tushirilishi kerak)
+# Server integratsiya (e2e) testlari (avval server ishga tushirilishi kerak)
 node token-bucket/token-bucket-server.test.js
+node leaky-bucket/leaky-bucket-server.test.js
 ```
 
-### Unit test natijalari (11 ta test)
+### Token Bucket — unit test natijalari (6 ta test)
 
 | Test | Tekshiradi                                  |
 | ---- | ------------------------------------------- |
@@ -124,6 +180,17 @@ node token-bucket/token-bucket-server.test.js
 | 4    | Tokenlar sig'imdan oshib ketmaydi           |
 | 5    | Turli foydalanuvchilar bir-biridan mustaqil |
 | 6    | Burst keyin throttle pattern ishlaydi       |
+
+### Leaky Bucket — unit test natijalari (6 ta test)
+
+| Test | Tekshiradi                                       |
+| ---- | ------------------------------------------------ |
+| 1    | Sig'im ichidagi so'rovlar navbatga qo'yiladi     |
+| 2    | Navbat to'lganda so'rovlar rad etiladi           |
+| 3    | So'rovlar doimiy tezlikda oqib chiqadi           |
+| 4    | Navbat sig'imdan oshib ketmaydi                  |
+| 5    | Turli foydalanuvchilar bir-biridan mustaqil      |
+| 6    | Qabul qilingan so'rov oqqandan keyin hal bo'ladi |
 
 ---
 
