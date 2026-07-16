@@ -6,15 +6,27 @@ Rate limiting — bu serverga kelayotgan so'rovlar sonini cheklash usuli. Bu res
 
 ```
 rate-limiter/
-├── server.js                        # HTTP server (/token-bucket va /leaky-bucket)
+├── server.js                                       # HTTP server (5 ta endpoint)
 ├── token-bucket/
-│   ├── rate-limiter.js              # Token Bucket implementatsiyasi
-│   ├── rate-limiter.test.js         # Unit testlar (serversiz)
-│   └── token-bucket-server.test.js  # Server integratsiya (e2e) testi
-└── leaky-bucket/
-    ├── rate-limiter.js              # Leaky Bucket implementatsiyasi
-    ├── rate-limiter.test.js         # Unit testlar (serversiz)
-    └── leaky-bucket-server.test.js  # Server integratsiya (e2e) testi
+│   ├── rate-limiter.js                             # Token Bucket implementatsiyasi
+│   ├── rate-limiter.test.js                        # Unit testlar (serversiz)
+│   └── token-bucket-server.test.js                 # Server integratsiya (e2e) testi
+├── leaky-bucket/
+│   ├── rate-limiter.js                             # Leaky Bucket implementatsiyasi
+│   ├── rate-limiter.test.js                        # Unit testlar (serversiz)
+│   └── leaky-bucket-server.test.js                 # Server integratsiya (e2e) testi
+├── fixed-window/
+│   ├── rate-limiter.js                             # Fixed Window implementatsiyasi
+│   ├── rate-limiter.test.js                        # Unit testlar (serversiz)
+│   └── fixed-window-server.test.js                 # Server integratsiya (e2e) testi
+├── sliding-window-log/
+│   ├── rate-limiter.js                             # Sliding Window Log implementatsiyasi
+│   ├── rate-limiter.test.js                        # Unit testlar (serversiz)
+│   └── sliding-window-log-server.test.js           # Server integratsiya (e2e) testi
+└── sliding-window-counter/
+    ├── rate-limiter.js                             # Sliding Window Counter implementatsiyasi
+    ├── rate-limiter.test.js                        # Unit testlar (serversiz)
+    └── sliding-window-counter-server.test.js       # Server integratsiya (e2e) testi
 ```
 
 ---
@@ -113,6 +125,97 @@ limiter.stopAll(); // barcha fon taymerlarini to'xtatadi
 
 ---
 
+## Fixed Window algoritmi
+
+Fixed Window — eng oddiy algoritm: vaqt qat'iy intervallarga (masalan har 1 sekund) bo'linadi va har intervalda so'rovlar sanaladi. Interval tugaganda hisob nolga tushadi.
+
+### Qanday ishlaydi?
+
+```
+Interval (sig'im: 5 so'rov / 1 sekund)
+│
+├── Har so'rov joriy interval hisobini oshiradi
+├── Hisob sig'imga yetsa → so'rov rad etiladi (429)
+├── Interval muddati tugaganda hisob nolga tushadi
+└── Yangi interval to'liq sig'im bilan boshlanadi
+```
+
+### Kamchiligi — interval chegarasi (boundary) muammosi
+
+Ikki qo'shni intervalning chegarasida qisqa vaqt ichida ikki barobar so'rov o'tishi mumkin: birinchi interval oxirida 5 ta, keyingi interval boshida yana 5 ta → ~1 sekund ichida 10 ta. Sliding Window bu muammoni hal qiladi.
+
+```javascript
+const limiter = new FixedWindowRateLimiter(5, 1000); // 5 so'rov / 1000ms interval
+limiter.isAllowed("user-123"); // true yoki false
+limiter.getCurrentState("user-123"); // { requestCount, capacity, windowResetAt }
+```
+
+---
+
+## Sliding Window Log algoritmi
+
+Sliding Window Log — har bir so'rovning aniq vaqtini (timestamp) jurnalda saqlaydi va faqat "hozirgi paytdan orqaga bitta interval" ichiga tushadigan so'rovlarni sanaydi. Interval doim siljib turadi, shuning uchun Fixed Window'dagi chegara muammosi yo'q.
+
+### Qanday ishlaydi?
+
+```
+Interval (sig'im: 5 so'rov, siljuvchi 1 sekund)
+│
+├── Har so'rovning timestampi jurnalga qo'shiladi
+├── Har tekshiruvda intervaldan chiqib ketgan (eski) timestamplar olib tashlanadi
+├── Jurnaldagi yozuvlar soni sig'imga yetsa → so'rov rad etiladi (429)
+└── Interval uzluksiz siljiydi (qat'iy chegara yo'q)
+```
+
+### Fixed Window bilan farqi
+
+| Xususiyat        | Fixed Window                     | Sliding Window Log                 |
+| ---------------- | -------------------------------- | ---------------------------------- |
+| **Aniqlik**      | Chegara burst muammosi bor       | Aniq — chegara muammosi yo'q       |
+| **Xotira**       | Kam (faqat bitta hisoblagich)    | Ko'proq (har so'rov timestampi)    |
+| **Interval**     | Qat'iy, birdan nolga tushadi     | Uzluksiz siljiydi                  |
+
+```javascript
+const limiter = new SlidingWindowLogRateLimiter(1000, 5); // 1000ms siljuvchi interval, 5 so'rov
+limiter.isAllowed("user-123"); // true yoki false
+limiter.getCurrentState("user-123"); // { count, capacity, remaining, oldestTimestamp }
+```
+
+---
+
+## Sliding Window Counter algoritmi
+
+Sliding Window Counter — Fixed Window'ning chegara muammosini kam xotira bilan yumshatadigan algoritm. Har so'rov uchun timestamp saqlamaydi (Sliding Window Log'dan farqi), faqat ikkita hisoblagich yuritadi: joriy interval va oldingi interval. Joriy hisobga oldingi interval hisobining **vaznlangan** qismi qo'shiladi.
+
+### Qanday ishlaydi?
+
+```
+Interval (sig'im: 5 so'rov / 1 sekund)
+│
+├── currentCount — joriy intervaldagi so'rovlar
+├── previousCount — oldingi intervaldagi so'rovlar
+├── Taxminiy hisob = previousCount * prevWeight + currentCount
+│     prevWeight = 1 - (interval ichida o'tgan vaqt / interval uzunligi)
+├── Taxminiy hisob sig'imga yetsa → so'rov rad etiladi (429)
+└── Interval o'tganda currentCount → previousCount ga suriladi
+```
+
+### Sliding Window Log bilan farqi
+
+| Xususiyat        | Sliding Window Log               | Sliding Window Counter             |
+| ---------------- | -------------------------------- | ---------------------------------- |
+| **Xotira**       | Har so'rov uchun timestamp       | Faqat 2 ta hisoblagich             |
+| **Aniqlik**      | Aniq                             | Taxminiy (vaznlangan)              |
+| **Chegara burst**| Yo'q                             | Yumshatilgan (deyarli yo'q)        |
+
+```javascript
+const limiter = new SlidingWindowCounterRateLimiter(1000, 5); // 1000ms interval, 5 so'rov
+limiter.isAllowed("user-123"); // true yoki false
+limiter.getCurrentState("user-123"); // { previousCount, currentCount, estimated, capacity, windowEndsAt }
+```
+
+---
+
 ## Middleware pattern
 
 `server.js` da rate limiter middleware sifatida ishlatiladi — Express.js dagi `(req, res, next)` pattern bilan bir xil:
@@ -154,6 +257,18 @@ for i in {1..8}; do curl -s -o /dev/null -w "%{http_code}\n" \
 # Leaky bucket — parallel so'rovlar (navbat to'lganda 429)
 for i in {1..8}; do curl -s -o /dev/null -w "%{http_code}\n" \
   -H "x-user-id: bob" http://localhost:3000/leaky-bucket & done; wait
+
+# Fixed window — interval limiti oshganda (429)
+for i in {1..8}; do curl -s -o /dev/null -w "%{http_code}\n" \
+  -H "x-user-id: carol" http://localhost:3000/fixed-window; done
+
+# Sliding window log — siljuvchi interval limiti oshganda (429)
+for i in {1..8}; do curl -s -o /dev/null -w "%{http_code}\n" \
+  -H "x-user-id: dave" http://localhost:3000/sliding-window-log; done
+
+# Sliding window counter — vaznlangan interval limiti oshganda (429)
+for i in {1..8}; do curl -s -o /dev/null -w "%{http_code}\n" \
+  -H "x-user-id: erin" http://localhost:3000/sliding-window-counter; done
 ```
 
 ---
@@ -164,10 +279,16 @@ for i in {1..8}; do curl -s -o /dev/null -w "%{http_code}\n" \
 # Unit testlar (server shart emas)
 node token-bucket/rate-limiter.test.js
 node leaky-bucket/rate-limiter.test.js
+node fixed-window/rate-limiter.test.js
+node sliding-window-log/rate-limiter.test.js
+node sliding-window-counter/rate-limiter.test.js
 
 # Server integratsiya (e2e) testlari (avval server ishga tushirilishi kerak)
 node token-bucket/token-bucket-server.test.js
 node leaky-bucket/leaky-bucket-server.test.js
+node fixed-window/fixed-window-server.test.js
+node sliding-window-log/sliding-window-log-server.test.js
+node sliding-window-counter/sliding-window-counter-server.test.js
 ```
 
 ### Token Bucket — unit test natijalari (6 ta test)
@@ -191,6 +312,39 @@ node leaky-bucket/leaky-bucket-server.test.js
 | 4    | Navbat sig'imdan oshib ketmaydi                  |
 | 5    | Turli foydalanuvchilar bir-biridan mustaqil      |
 | 6    | Qabul qilingan so'rov oqqandan keyin hal bo'ladi |
+
+### Fixed Window — unit test natijalari (6 ta test)
+
+| Test | Tekshiradi                                       |
+| ---- | ------------------------------------------------ |
+| 1    | Sig'im ichidagi so'rovlar qabul qilinadi         |
+| 2    | Sig'imdan oshgan so'rovlar rad etiladi           |
+| 3    | Interval tugagach hisob nolga tushadi            |
+| 4    | Hisob sig'imdan oshib ketmaydi                   |
+| 5    | Turli foydalanuvchilar bir-biridan mustaqil      |
+| 6    | Interval chegarasida burst muammosi (kamchilik)  |
+
+### Sliding Window Log — unit test natijalari (6 ta test)
+
+| Test | Tekshiradi                                       |
+| ---- | ------------------------------------------------ |
+| 1    | Sig'im ichidagi so'rovlar qabul qilinadi         |
+| 2    | Sig'imdan oshgan so'rovlar rad etiladi           |
+| 3    | Eski timestamplar intervaldan chiqib ketadi      |
+| 4    | Log sig'imdan oshib ketmaydi                     |
+| 5    | Turli foydalanuvchilar bir-biridan mustaqil      |
+| 6    | Interval chegarasida burst bo'lmaydi (ustunlik)  |
+
+### Sliding Window Counter — unit test natijalari (6 ta test)
+
+| Test | Tekshiradi                                       |
+| ---- | ------------------------------------------------ |
+| 1    | Sig'im ichidagi so'rovlar qabul qilinadi         |
+| 2    | Sig'imdan oshgan so'rovlar rad etiladi           |
+| 3    | Ikki interval o'tgach hisob nolga tushadi        |
+| 4    | Taxminiy hisob sig'imdan oshib ketmaydi          |
+| 5    | Turli foydalanuvchilar bir-biridan mustaqil      |
+| 6    | Interval chegarasidagi burst yumshatiladi        |
 
 ---
 
