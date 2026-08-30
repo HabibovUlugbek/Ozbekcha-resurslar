@@ -91,5 +91,5 @@ node client.js
 ## 📚 Bog'liq maqolalar
 
 - [Processlar orasidagi kommunikatsiya (IPC)](https://habibovulugbek.medium.com/processlar-orasidagi-kommunikatsiya-ipc-6e1d95acba16)
-- [Processlar va thread nima farqi bor?](https://habibovulugbek.medium.com/process-va-thread-nima-farqi-bor-78201ce6a72f)
+- [Processlar va thread nima farqi bor?](https://changeracademy.uz/blog/process-va-thread-nima-farqi-bor-c1c38441-cc91-46e8-8b5c-795da89139fd)
 - [Unix qanday ishlaydi?](https://habibovulugbek.medium.com/unix-qanday-ishlaydi-36bf80a69fef)

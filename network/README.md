@@ -97,10 +97,10 @@ node client.js
 
 ## 📚 Bog'liq maqolalar
 
-- [TCP va UDP](https://habibovulugbek.medium.com/tcp-va-udp-8ee56341c713)
-- [TCP handshake](https://habibovulugbek.medium.com/tcp-handshake-dee5418cef95)
-- [TCP slow start](https://habibovulugbek.medium.com/tcp-slow-start-6e6e88d3899b)
-- [HTTP (HTTP versiyalari)](https://habibovulugbek.medium.com/http-http-versiyalari-afb9fe438585)
+- [TCP va UDP](https://changeracademy.uz/blog/tcp-va-udp-aeb180ef-cdbf-44a8-b17d-f3776141dead)
+- [TCP handshake](https://changeracademy.uz/blog/tcp-handshake-034ba299-5b0d-488e-b024-c3829ffaa481)
+- [TCP slow start](https://changeracademy.uz/blog/tcp-slow-start-3dc8936f-95a2-49d0-8bcd-a2f2cf9f0c22)
+- [HTTP (HTTP versiyalari)](https://changeracademy.uz/blog/http-http-versiyalari-413838a5-c681-4cf7-9c34-6ffddfbdc24e)
 - [DNS qanday ishlaydi?](https://medium.com/@habibovulugbek/dns-qanday-ishlaydi-83dca63ba8c6)
 - [Network yoki OSI model qismlari](https://habibovulugbek.medium.com/network-yoki-osi-model-qismlari-ced6473418f9)
 - [Internet qanday ishlaydi?](https://habibovulugbek.medium.com/internet-qanday-ishlaydi-yoki-malumot-almashish-qanchalik-o-zgardi-ae79e5dddc13)

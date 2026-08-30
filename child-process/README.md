@@ -81,4 +81,4 @@ child.on("message", (msg) => console.log(msg));
 ## 📚 Bog'liq maqolalar
 
 - [Nodejsda Child process](https://habibovulugbek.medium.com/nodejsda-child-process-aa8312dcc228)
-- [Processlar va thread nima farqi bor?](https://habibovulugbek.medium.com/process-va-thread-nima-farqi-bor-78201ce6a72f)
+- [Processlar va thread nima farqi bor?](https://changeracademy.uz/blog/process-va-thread-nima-farqi-bor-c1c38441-cc91-46e8-8b5c-795da89139fd)

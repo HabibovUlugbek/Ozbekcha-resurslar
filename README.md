@@ -1,3 +1,19 @@
+<div align="center">
+
+<a href="https://changeracademy.uz">
+  <img src="assets/changeracademy.png" alt="Changer Academy" width="560">
+</a>
+
+### Ko'proq maqola o'qishni xohlaysizmi ?
+
+Barcha maqolalar **[changeracademy.uz](https://changeracademy.uz)** saytida chop etiladi.
+
+[**Saytga o'tish →**](https://changeracademy.uz/articles/)
+
+</div>
+
+---
+
 # O'zbek tilida dasturlash resurslari
 
 Ushbu repository O'zbek tilida dasturlash bo'yicha turli resurslarni jamlash uchun mo'ljallangan. Bu yerda siz dasturlash tillari, kutubxonalar, frameworklar va boshqa texnologiyalar haqida ma'lumotlar topishingiz mumkin.
@@ -21,11 +37,11 @@ Bu repository Oʻzbek tilida yozilgan:
 ### ⚙️ System Design
 
 - [System design tushunchalari real hayot bilan solishtirganda](https://habibovulugbek.medium.com/system-design-tushunchalari-real-hayot-bilan-solishtirganda-01d26fbc46d2)
-- [Distributed system nima?](https://habibovulugbek.medium.com/distributed-system-nima-a0a1be8878c6)
+- [Distributed system nima ?](https://changeracademy.uz/blog/distributed-system-nima-7ca8c759-eef1-4a41-844b-2cef2d9b0b4c)
 - [Scalability](https://habibovulugbek.medium.com/scalability-654f54fd2863)
 - [CAP theorem](https://habibovulugbek.medium.com/cap-theorem-a38f9e370557)
 - [Backend for Frontend (BFF)](https://habibovulugbek.medium.com/backend-for-frontend-bff-9b31efed644d)
-- [Circuit Breaker](https://habibovulugbek.medium.com/circuit-breaker-167b0d1d127d)
+- [Circuit Breaker nima ?](https://changeracademy.uz/blog/circuit-breaker-nima-b618d28f-d8b2-41f3-b308-b7813cfe7f73)
 - [Strong vs Eventual consistency](https://habibovulugbek.medium.com/strong-vs-eventual-consistency-d7d1855453ab)
 - [Consistent hashing](https://habibovulugbek.medium.com/consistent-hashing-dddfb60a9d20)
 - [Consistent hashing 0 dan yozamiz (benchmark bilan)](https://habibovulugbek.medium.com/consistent-hashing-0-dan-yozamiz-benchmark-bilan-91130446cbeb)
@@ -44,6 +60,7 @@ Bu repository Oʻzbek tilida yozilgan:
 - [Load balancer nima uchun kerak ?](https://medium.com/@habibovulugbek/load-balancer-nima-uchun-kerak-8b01e476340e)
 - [Load balancerlar bilan real amaliyot](https://medium.com/@habibovulugbek/load-balancerlar-bilan-real-amaliyot-46b5aa336855)
 - [Forward va reverse proxy nima ? (amaliyot bilan)](https://medium.com/@habibovulugbek/forward-va-reverse-proxy-nima-amaliyot-bilan-19457ba2020a)
+- [Hodisalarga asoslangan arxitektura (Event driven architecture)](https://changeracademy.uz/blog/hodisalarga-asoslangan-arxitektura-event-driven-architecture-5f8e84a6-8f85-4805-9928-0352494f4298)
 
 ## 🗄️ Databaza bilimlari
 
@@ -73,13 +90,13 @@ Bu repository Oʻzbek tilida yozilgan:
 - [IP addresslar haqida bilib olamiz .](https://habibovulugbek.medium.com/ip-addresslar-haqida-bilib-olamiz-63296c8dbbd7?postPublishedType=initial)
 - [Internet qanday ishlaydi yoki malumot almashish qanchalik o`zgardi ?](https://habibovulugbek.medium.com/internet-qanday-ishlaydi-yoki-malumot-almashish-qanchalik-o-zgardi-ae79e5dddc13)
 - [Network yoki OSI model qismlari .](https://habibovulugbek.medium.com/network-yoki-osi-model-qismlari-ced6473418f9)
-- [TCP handshake](https://habibovulugbek.medium.com/tcp-handshake-dee5418cef95)
-- [TCP slow start](https://habibovulugbek.medium.com/tcp-slow-start-6e6e88d3899b)
-- [TCP fast open (handshakeni chetlab o`tish)](https://habibovulugbek.medium.com/tcp-fast-open-handshakeni-chetlab-o-tish-001d52528793)
-- [TCP va UDP](https://habibovulugbek.medium.com/tcp-va-udp-8ee56341c713)
-- [HTTP (HTTP versiyalari)](https://habibovulugbek.medium.com/http-http-versiyalari-afb9fe438585)
+- [TCP handshake](https://changeracademy.uz/blog/tcp-handshake-034ba299-5b0d-488e-b024-c3829ffaa481)
+- [TCP slow start](https://changeracademy.uz/blog/tcp-slow-start-3dc8936f-95a2-49d0-8bcd-a2f2cf9f0c22)
+- [TCP fast open](https://changeracademy.uz/blog/tcp-fast-open-21636a51-b44a-4c6e-b6df-98d380db9dce)
+- [TCP va UDP](https://changeracademy.uz/blog/tcp-va-udp-aeb180ef-cdbf-44a8-b17d-f3776141dead)
+- [HTTP (HTTP versiyalari)](https://changeracademy.uz/blog/http-http-versiyalari-413838a5-c681-4cf7-9c34-6ffddfbdc24e)
 - [Biz qaysi IP addressni ishlatamiz ? (NAT)](https://habibovulugbek.medium.com/biz-qaysi-ip-addressni-ishlatamiz-nat-6fc3fae3a32a)
-- [SYN Flood hujumi haqida bilasizmi ?](https://habibovulugbek.medium.com/syn-flood-hujumi-haqida-bilasizmi-d97052879766)
+- [SYN Flood hujumi haqida bilasizmi ?](https://changeracademy.uz/blog/syn-flood-hujumi-haqida-bilasizmi-0c8b6368-8f64-4429-acf1-31e8c4f00c6a)
 - [DNS qanday ishlaydi ?](https://medium.com/@habibovulugbek/dns-qanday-ishlaydi-83dca63ba8c6)
 
 ## 🖥️ Operatsion Sistema
@@ -87,7 +104,7 @@ Bu repository Oʻzbek tilida yozilgan:
 - [Unix qanday ishlaydi ?](https://habibovulugbek.medium.com/unix-qanday-ishlaydi-36bf80a69fef)
 - [Terminal haqida boshlang`ich bilimlar ?](https://habibovulugbek.medium.com/terminal-haqida-boshlang-ich-bilimlar-d0e865478724)
 - [Processlar orasidagi kommunikatsiya(IPC)](https://habibovulugbek.medium.com/processlar-orasidagi-kommunikatsiya-ipc-6e1d95acba16)
-- [Processlar va thread nima farqi bor ?](https://habibovulugbek.medium.com/process-va-thread-nima-farqi-bor-78201ce6a72f)
+- [Process va thread nima farqi bor ?](https://changeracademy.uz/blog/process-va-thread-nima-farqi-bor-c1c38441-cc91-46e8-8b5c-795da89139fd)
 - [Client va server o`rtasida aloqa o`rnatish qanday bo`ladi ? (OS level)](https://medium.com/@habibovulugbek/client-va-server-o-rtasida-aloqa-o-rnatish-qanday-bo-ladi-os-level-0a8ddd53d535)
 
 ## Node.js
@@ -111,14 +128,17 @@ Bu repository Oʻzbek tilida yozilgan:
 - [Javascript Error handling (Xatolar bilan ishlash)](https://habibovulugbek.medium.com/javascript-error-handling-xatolar-bilan-ishlash-bd52f877f7ad)
 - [Javascriptdagi IIFE haqida nimalarni bilamiz ?](https://habibovulugbek.medium.com/javascriptdagi-iife-haqida-nimalarni-bilamiz-9023bd3d01ae)
 - [Javascriptda (Nodejs) modullar haqida tanishamiz.](https://habibovulugbek.medium.com/javascriptda-nodejs-modullar-haqida-tanishamiz-a942396d918d)
-- [never, void ,any va unknown tiplarining farqi nimada ? (intervyu savoli )](https://habibovulugbek.medium.com/never-void-any-va-unknown-tiplarining-farqi-nimada-intervyu-savoli-e551abb38791)
-- [Interface & Type](https://habibovulugbek.medium.com/interface-type-3e44009a5d11)
+- [Never, void ,any va unknown tiplarining farqi nimada ?](https://changeracademy.uz/blog/never-void-any-va-unknown-tiplarining-farqi-nimada-fecb0585-daa0-4e7e-9573-40cf2f9ec59f)
+- [Interface va type farqlari (Typescript)](https://changeracademy.uz/blog/interface-va-type-farqlari-typescript-20a62255-747d-4796-8819-88ccb227489d)
 
 ## 📌 Qo'shimcha foydali mavzular
 
-- [S.O.L.I.D](https://habibovulugbek.medium.com/s-o-l-i-d-421a1a2bf11)
-- [Array & Linked list](https://habibovulugbek.medium.com/array-linked-list-f5f709d96797)
-- [Compilerlar dastur kodini qanday ishlatadi ?](https://habibovulugbek.medium.com/compilerlar-dastur-kodini-qanday-ishlatadi-adf8365df6fb)
+- [SOLID prinsiplari](https://changeracademy.uz/blog/solid-prinsiplari-9e82b17e-676c-40f9-b67a-73af732656a7)
+- [Array va Linked list farqlari](https://changeracademy.uz/blog/array-va-linked-list-farqlari-d962e219-ea93-4041-af76-4281a8b60ee0)
+- [Compilerlar dastur kodini qanday ishlatadi ?](https://changeracademy.uz/blog/compilerlar-dastur-kodini-qanday-ishlatadi-a562888f-5a6b-46ad-92fb-fb2aa9361eb9)
+
+> 💡 Bu ro'yxatdagi maqolalar bosqichma-bosqich **[changeracademy.uz](https://changeracademy.uz)** ga ko'chirilmoqda.
+> Yangi maqolalar birinchi bo'lib o'sha yerda chiqadi — [barcha maqolalar](https://changeracademy.uz/articles/).
 
 ---
 
@@ -148,7 +168,7 @@ Real implementatsiyalar — maqolalardagi nazariyani amalda ko'ring:
 
 | Papka                | Mavzu                            | Maqola                                                                                                                                               |
 | -------------------- | -------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [network/](network/) | TCP, UDP, Chat App, Fayl yuklash | [TCP va UDP](https://habibovulugbek.medium.com/tcp-va-udp-8ee56341c713) · [DNS](https://medium.com/@habibovulugbek/dns-qanday-ishlaydi-83dca63ba8c6) |
+| [network/](network/) | TCP, UDP, Chat App, Fayl yuklash | [TCP va UDP](https://changeracademy.uz/blog/tcp-va-udp-aeb180ef-cdbf-44a8-b17d-f3776141dead) · [DNS](https://medium.com/@habibovulugbek/dns-qanday-ishlaydi-83dca63ba8c6) |
 
 ### 🖥️ Node.js
 
